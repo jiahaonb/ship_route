@@ -167,8 +167,8 @@ for n in range(max_iter):
         model = Model(f"TwoStageShipRouting_Scenario_{omega}")
         model.Params.OutputFlag = 0
         model.Params.NonConvex = 2  # 允许非凸二次约束
-        model.Params.MIPGap = 0.1
-        model.Params.Threads = 25
+        model.Params.MIPGap = 0.01
+        model.Params.Threads = 28
 
         # 一阶段变量（针对每个情景）
         t_eta = model.addVars(P, vtype=GRB.CONTINUOUS, lb=0, name="t_eta")
@@ -258,7 +258,7 @@ for n in range(max_iter):
         # 一阶段约束
         # 固定初始出发时间
         model.addConstr(t_eta[1] == initial_departure_time, name="InitialETA")
-        # t_eta_mod 和 n_days 的关系
+        # t_eta_mod 和 n_weeks 的关系
         model.addConstrs((t_eta[p] == 168 * n_days[p] + t_eta_mod[p] for p in P), name="ETA_Modulo")
         model.addConstrs((t_eta_mod[p] >= 0 for p in P), name="ETA_Modulo_NonNegative")
         model.addConstrs((t_eta_mod[p] <= 168 for p in P), name="ETA_Modulo_Max")
@@ -529,8 +529,8 @@ for n in range(max_iter):
                 # 加油策略
                 refuel_strategy = '加油' if scenario_solutions[omega]['x_b'][p] > 0.5 else '不加油'
                 print(f"  加油策略: {refuel_strategy}")
-                print(f"    低硫燃油消耗: {scenario_solutions[omega]['R_M'][p]:.2f}")
-                print(f"    高硫燃油消耗: {scenario_solutions[omega]['R_H'][p]:.2f}")
+                print(f"    低硫燃油消耗: {scenario_solutions[omega]['R_M'][p]:.6f}")
+                print(f"    高硫燃油消耗: {scenario_solutions[omega]['R_H'][p]:.6f}")
                 # 绕行策略（仅对 p in P_）
                 if p in P_:
                     detour_strategy = '绕行' if scenario_solutions[omega]['y'][p] > 0.5 else '直接航线'
@@ -678,15 +678,15 @@ for omega in Omega:
         print(f"    到达时的高硫燃油量: {scenario_solutions[omega]['q_H_arr'][p]:.2f}")
         print(f"    离开时的低硫燃油量: {scenario_solutions[omega]['q_M_dep'][p]:.2f}")
         print(f"    离开时的高硫燃油量: {scenario_solutions[omega]['q_H_dep'][p]:.2f}")
-        print(f"    低硫燃油消耗: {scenario_solutions[omega]['R_M'][p]:.2f}")
-        print(f"    高硫燃油消耗: {scenario_solutions[omega]['R_H'][p]:.2f}")
+        print(f"    低硫燃油消耗: {scenario_solutions[omega]['R_M'][p]:.6f}")
+        print(f"    高硫燃油消耗: {scenario_solutions[omega]['R_H'][p]:.6f}")
         # 输出当日具体到达时间
         if p ==1:
             print(f"    当日到达时间（7d）: {scenario_solutions[omega]['t_eta_mod'][p]:.2f} 小时")
         else:
             print(f"    当日到达时间（7d）: {scenario_solutions[omega]['t_arr_mod'][p]:.2f} 小时")
-    print(f"  在港口 {N + 1} 的最终低硫燃油量: {scenario_solutions[omega]['q_M_arr'][N+1]:.2f}")
-    print(f"  在港口 {N + 1} 的最终高硫燃油量: {scenario_solutions[omega]['q_H_arr'][N+1]:.2f}")
+    print(f"  在港口 {N + 1} 的最终低硫燃油量: {scenario_solutions[omega]['q_M_arr'][N]:.2f}")
+    print(f"  在港口 {N + 1} 的最终高硫燃油量: {scenario_solutions[omega]['q_H_arr'][N]:.2f}")
 
     print(f"\n情景 {omega} 的目标函数值：{scenario_solutions[omega]['obj']}")
 
