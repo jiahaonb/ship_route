@@ -43,7 +43,6 @@ b = {
     (6, 1): 118, (6, 2): 134, (6, 3): 149, (6, 4): 165
 }
 
-
 h = {
     (1, 1): 240, (1, 2): 210, (1, 3): 245, (1, 4): 174,
     (2, 1): 209, (2, 2): 241, (2, 3): 206, (2, 4): 210,
@@ -346,7 +345,7 @@ for n in range(max_iter):
             model.addConstr(theta[p] <= (np.pi / 2) - 0.1, name=f"ThetaMax_{p}")
 
             # 定义theta的取值点和对应的cos(theta)、tan(theta)值，用于PWL近似
-            theta_breakpoints = np.linspace(0.1, (np.pi / 2) - 0.1, 10)
+            theta_breakpoints = np.linspace(0.1, (np.pi / 2) - 0.1, 100)
             cos_theta_values = np.cos(theta_breakpoints)
             tan_theta_values = np.tan(theta_breakpoints)
             sin_theta_values = np.sin(theta_breakpoints)
