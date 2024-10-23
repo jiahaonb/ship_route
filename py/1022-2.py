@@ -169,7 +169,7 @@ for n in range(max_iter):
         model.Params.OutputFlag = 0
         model.Params.NonConvex = 2  # 允许非凸二次约束
         model.Params.MIPGap = 0.1
-        model.Params.Threads = 6
+        model.Params.Threads = 25
 
         # 一阶段变量（针对每个情景）
         t_eta = model.addVars(P, vtype=GRB.CONTINUOUS, lb=0, name="t_eta")
