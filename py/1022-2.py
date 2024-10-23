@@ -91,7 +91,7 @@ P_H = {
 alpha_M = 3.081
 alpha_H = 3.0
 F = 1.71  # 燃油消耗系数
-v_max = 25  # 最大航速（节）
+v_max = 35 # 最大航速（节）
 v_min = 10  # 最小航速（节）
 
 # 距离参数
@@ -105,12 +105,12 @@ W_p2 = {1: 800, 2: 900, 3: 45, 4: 5, 5: 740, 6: 320}
 W_sp = {1: 3000, 2: 2773, 3: 2923, 4: 2898, 5: 2896, 6: 2926}
 
 # 燃油容量
-L_M = 1000  # 低硫燃油最大容量（吨）
-L_H = 1000  # 高硫燃油最大容量（吨）
-S_M = 300  # 低硫燃油最小容量（吨）
-S_H = 300  # 高硫燃油最小容量（吨）
-B_M1 = 400  # 到达港口 1 时的初始低硫燃油量（吨）
-B_H1 = 450  # 到达港口 1 时的初始高硫燃油量（吨）
+L_M = 20 # 低硫燃油最大容量（吨）
+L_H = 20  # 高硫燃油最大容量（吨）
+S_M = 3  # 低硫燃油最小容量（吨）
+S_H = 3  # 高硫燃油最小容量（吨）
+B_M1 = 3  # 到达港口 1 时的初始低硫燃油量（吨）
+B_H1 = 3  # 到达港口 1 时的初始高硫燃油量（吨）
 
 # 大 M 值
 M_big = 1e7
@@ -167,7 +167,8 @@ for n in range(max_iter):
         model = Model(f"TwoStageShipRouting_Scenario_{omega}")
         model.Params.OutputFlag = 0
         model.Params.NonConvex = 2  # 允许非凸二次约束
-        model.Params.MIPGap = 0.01
+        # 修改迭代量
+        model.Params.MIPGap = 0.001
         model.Params.Threads = 28
 
         # 一阶段变量（针对每个情景）
@@ -306,7 +307,7 @@ for n in range(max_iter):
                 model.addConstr( t_wait[p] ==t_port_entry[p] - t_arr[p], name=f"PortEntryTime_{p}")
 
                 # 迟到时间
-                model.addConstr(t_late[p] >= t_port_entry[p] - t_eta[p], name=f"LateTime_{p}")
+                model.addConstr(t_late[p] == t_arr[p] - t_eta[p] , name=f"LateTime_{p}")
                 model.addConstr(t_late[p] >= 0, name=f"LateTimeNonNegative_{p}")
 
                 # 离开时间
@@ -317,7 +318,6 @@ for n in range(max_iter):
                 # 进港时间约束
                 for k in K:
                     # 进港时间必须在选择的时间窗口内
-
                     model.addConstr(
                         t_port_entry[p] >= 168 * n_days_port_entry[p, k] + a[p, k] - M_big * (1 - z[p, k]),
                         name=f"PortEntryStartWindow_{p}_{k}"
@@ -331,6 +331,7 @@ for n in range(max_iter):
                         n_days_port_entry[p, k] >= n_days_arrival[p],
                         name=f"PortEntryDays_{p}_{k}"
                     )
+
                 # 进港时间不早于到达时间
                 model.addConstr(t_port_entry[p] >= t_arr[p], name=f"PortEntryAfterArrival_{p}")
 
@@ -557,6 +558,8 @@ for n in range(max_iter):
                 print(f"  进港时间: {scenario_solutions[omega]['t_port_entry'][p]:.2f} 小时")
                 # 等待时间
                 print(f"  等待时间: {scenario_solutions[omega]['t_wait'][p]:.2f} 小时")
+                # 迟到时间
+                print(f"  迟到时间: {scenario_solutions[omega]['t_late'][p]:.2f} 小时")
 
                 # 时间窗选择
                 selected_window = max(scenario_solutions[omega]['z'][p, k] for k in K)
