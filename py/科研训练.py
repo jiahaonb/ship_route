@@ -117,11 +117,12 @@ M_big = 1e7
 # 定义一个非常小的正数 epsilon
 epsilon = 1e-6
 
-# 已知的到达和离开时间（示例数据，可以根据需要修改）
-T_arr = {1: 8.0, 2: 24.0, 3: 40.0, 4: 56.0, 5: 72.0, 6: 88.0}
+
+T_arr = {1: 8.0, 2: 24, 3: 68, 4: 94, 5:102, 6: 110}
+T_dep = {1: 16, 2: 28, 3: 79, 4: 94, 5:108, 6: 114}
 T_dep_N = 100.0  # 港口 N 的已知离开时间
-Q = 1.0  # 参数 Q
-T_sail =  {1: 5, 2: 35, 3: 15, 4: 7, 5: 2}
+Q = 20.0  # 参数 Q
+T_sail =  {1: 4, 2: 40, 3: 15, 4: 8, 5: 2}
 
 # 创建 Gurobi 模型
 model = Model("SingleScenarioShipRouting")
@@ -181,7 +182,7 @@ sin_theta = model.addVars(P_, vtype=GRB.CONTINUOUS, lb=0, ub=1, name="sin_theta"
 cot_theta = model.addVars(P_, vtype=GRB.CONTINUOUS, lb=0, name="cot_theta")
 
 # 固定初始到达时间
-model.addConstr(t_arr[1] == T_arr[1] - Q, name="InitialArrivalTime")
+model.addConstr(t_arr[1] == T_arr[1] + Q, name="InitialArrivalTime")
 
 # t_late[p] = t_arr[p] - T_arr[p]
 model.addConstrs((t_late[p] == t_arr[p] - T_arr[p] for p in P), name="LateTimeDefinition")
@@ -205,7 +206,7 @@ for p in P:
 for p in P:
     if p == 1:
         # 港口 1 的到达时间已知
-        model.addConstr(t_arr[1] == T_arr[1] - Q, name=f"ArrivalTime_{1}")
+        model.addConstr(t_arr[1] == T_arr[1] + Q, name=f"ArrivalTime_{1}")
         # 等待时间为零
         model.addConstr(t_wait[1] == 0, name=f"WaitingTime_{1}")
         # 离开时间
@@ -367,7 +368,7 @@ model.addConstr(q_M_arr[N + 1] >= S_M, name=f"FinalFuelInventoryM")
 model.addConstr(q_H_arr[N + 1] >= S_H, name=f"FinalFuelInventoryH")
 
 # 增加约束 t_dep[N] <= Q + T_dep[N]
-model.addConstr(t_dep[N] <= Q + T_dep_N, name="FinalDepartureTimeConstraint")
+model.addConstr(t_dep[6] <= Q + T_dep[6], name="FinalDepartureTimeConstraint")
 
 # 目标函数
 Objective = (
@@ -442,9 +443,9 @@ if model.status == GRB.OPTIMAL:
     for p in P_:
         print(f"  第 {p} 段（从港口 {p} 到港口 {p+1}）：恢复时间 r_{p} = {r_p[p]:.2f} 小时")
     print(f"\n总的恢复时间：{total_recovery:.2f} 小时，初始延误 Q = {Q:.2f} 小时")
-    if abs(total_recovery - Q) < 1e-2:
-        print("总恢复时间等于初始延误时间，船舶已完全恢复延误。")
+    if abs(total_recovery - Q) > 0 :
+        print("总恢复时间大于初始延误时间，船舶已完全恢复延误。")
     else:
-        print("总恢复时间不等于初始延误时间，船舶未能完全恢复延误。")
+        print("总恢复时间小于初始延误时间，船舶未能完全恢复延误。")
 else:
     print("模型未找到最优解。")
