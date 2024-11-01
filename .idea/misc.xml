@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="hsf" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="keyan" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="hsf" project-jdk-type="Python SDK" />
 </project>

@@ -165,10 +165,10 @@ for n in range(max_iter):
     for omega in Omega:
         # 创建 Gurobi 模型 参数如下：
         model = Model(f"TwoStageShipRouting_Scenario_{omega}")
-        model.Params.OutputFlag = 0
+        model.Params.OutputFlag = 1
         model.Params.NonConvex = 2  # 允许非凸二次约束
         # 修改迭代量
-        model.Params.MIPGap = 0.001
+        model.Params.MIPGap = 0.005
         model.Params.Threads = 28
 
         # 一阶段变量（针对每个情景）

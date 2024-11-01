@@ -6,10 +6,33 @@
 from gurobipy import Model, GRB, quicksum
 import numpy as np
 import  pandas as pd
+import sys
 
 # 数据输入地址
 csv_pm_path = "data_columns_PM.csv"
 csv_ph_path = "data_columns_PH.csv"
+# 数据输出地址
+file = open("修改PHA.txt", "w", encoding="utf-8")
+
+# 保存原始的sys.stdout
+original_stdout = sys.stdout
+
+# 重定向print到文件和控制台
+class Tee:
+    def __init__(self, file, stream):
+        self.file = file
+        self.stream = stream
+
+    def write(self, data):
+        self.file.write(data)
+        self.stream.write(data)
+
+    def flush(self):
+        self.file.flush()
+        self.stream.flush()
+
+# 使用Tee类来输出到文件和控制台
+sys.stdout = Tee(file, original_stdout)
 
 
 # 港口数量
@@ -18,7 +41,9 @@ N = 6  # 示例中的港口数量
 # 集合
 P = range(1, N + 1)  # 港口集合 [1,2,3,4,5,6]
 P_plus = range(1, N + 2)  # 包含最后一个虚拟港口 N+1
-Omega = [1, 2, 3, 4, 5, 6]  # 情景集合
+Omega = []
+for i in range(100):
+    Omega.append(i+1) # 情景集合
 # 时间窗  是30个
 K = [1,2,3,4]
 
@@ -46,7 +71,6 @@ b = {
     (5, 1): 102, (5, 2): 114, (5, 3): 125, (5, 4): 132,
     (6, 1): 118, (6, 2): 134, (6, 3): 149, (6, 4): 165
 }
-
 
 h = {
     (1, 1): 240, (1, 2): 210, (1, 3): 245, (1, 4): 174,
@@ -103,7 +127,7 @@ v_max = 25  # 最大航速（节）
 v_min = 10  # 最小航速（节）
 
 # 距离参数
-l_p = {1:193.89, 2:448.95, 3:186.94,4:221.12,5:28.75}  # 从港口 p 到 p+1 的不绕行距离（海里）
+l_p = {1:100.89, 2:420.95, 3:186.94,4:200.12,5:28.75}  # 从港口 p 到 p+1 的不绕行距离（海里）
 d_p = {1:12, 2:12, 3:12,4:12,5:12,6:12}  # 到达ECA边界的垂直距离（海里）
 L_p = {1:78.29, 2:364.47, 3:143.09,4:162.53,5:15.66}  # 从港口 p 到 p+1 的不绕行距离（海里
 
@@ -113,12 +137,12 @@ W_p2 = {1: 800, 2: 900, 3: 45, 4: 15, 5: 740, 6: 320}
 W_sp = {1: 3000, 2: 2773, 3: 2923, 4: 2898, 5: 2896, 6: 2926}
 
 # 燃油容量
-L_M = 1000  # 低硫燃油最大容量（吨）
-L_H = 1000  # 高硫燃油最大容量（吨）
-S_M = 300  # 低硫燃油最小容量（吨）
-S_H = 300  # 高硫燃油最小容量（吨）
-B_M1 = 400  # 到达港口 1 时的初始低硫燃油量（吨）
-B_H1 = 450  # 到达港口 1 时的初始高硫燃油量（吨）
+L_M = 10  # 低硫燃油最大容量（吨）
+L_H = 10  # 高硫燃油最大容量（吨）
+S_M = 3  # 低硫燃油最小容量（吨）
+S_H = 3  # 高硫燃油最小容量（吨）
+B_M1 =3  # 到达港口 1 时的初始低硫燃油量（吨）
+B_H1 = 3  # 到达港口 1 时的初始高硫燃油量（吨）
 
 # 大 M 值
 M_big = 1e7
@@ -127,27 +151,20 @@ M_big = 1e7
 p_omega = {omega: 1 / len(Omega) for omega in Omega}  # 假设等概率
 
 # PHA 参数
-rho_t = 10.0  # 对 t_eta 的罚参数
-rho_x = 10.0  # 对 x 的罚参数
-max_iter = 100  # 最大迭代次数
+rho_t = 20.0  # 对 t_eta 的罚参数
+rho_z = 100.0  # 对 x 的罚参数
+max_iter = 200  # 最大迭代次数
 epsilon_t = 1e-3  # 收敛阈值
-epsilon_x = 1e-10  # 收敛阈值
+epsilon_x = 1e-3  # 收敛阈值
 
 # 初始化协调变量和拉格朗日乘子
 t_eta_bar = {p: 0.0 for p in P}
-x_bar = {(p, k): 1.0 / len(K) for p in P for k in K}  # 均匀分配初值
+z_bar = {(p, k): 1.0 / len(K) for p in P for k in K}  # 均匀分配初值
 
-# 新增协调变量
-Q_M_bar = {p: 0.0 for p in P}
-Q_H_bar = {p: 0.0 for p in P}
-v_eca_bar = {p: (v_min + v_max) / 2 for p in P_}
-v_neca_bar = {p: (v_min + v_max) / 2 for p in P_}
-y_bar = {p: 0.0 for p in P_}  # 初始化为 0
-x_b_bar = {p: 0.0 for p in P}  # 初始化为 0
 
 # 初始化拉格朗日乘子
 mu_t = {omega: {p: 0.0 for p in P} for omega in Omega}
-mu_x = {omega: {(p, k): 0.0 for p in P for k in K} for omega in Omega}
+mu_z = {omega: {(p, k): 0.0 for p in P for k in K} for omega in Omega}
 
 # 新增拉格朗日乘子
 mu_Q_M = {omega: {p: 0.0 for p in P} for omega in Omega}
@@ -166,6 +183,7 @@ initial_departure_time = 8.0  # 例如，设置为 8:00
 # 定义一个非常小的正数 epsilon
 epsilon = 1e-6
 
+# 循环开始迭代
 for n in range(max_iter):
     print(f"\n--- PHA 迭代 {n+1} ---")
     # 对于每个情景，建立并求解子问题
@@ -173,7 +191,7 @@ for n in range(max_iter):
     for omega in Omega:
         # 创建 Gurobi 模型 参数如下：
         model = Model(f"TwoStageShipRouting_Scenario_{omega}")
-        model.Params.OutputFlag = 0
+        model.Params.OutputFlag = 1
         model.Params.NonConvex = 2  # 允许非凸二次约束
         model.Params.MIPGap = 0.1
         model.Params.Threads = 6
@@ -234,14 +252,14 @@ for n in range(max_iter):
         cot_theta = model.addVars(P_, vtype=GRB.CONTINUOUS, lb=0, name="cot_theta")
 
         # 一阶段目标函数（加入罚项和拉格朗日乘子）
-        FirstStageCost = quicksum(c[p, k] * x[p, k] * (W_p1[p] + W_p2[p]) for p in P for k in K)
+        FirstStageCost = quicksum(c[p, k] * z[p, k] * (W_p1[p] + W_p2[p]) for p in P for k in K)
 
         penalty_t = quicksum(
             rho_t / 2 * (t_eta[p] - t_eta_bar[p])**2 + mu_t[omega][p] * (t_eta[p] - t_eta_bar[p]) for p in P
         )
 
-        penalty_x = quicksum(
-            rho_x / 2 * (x[p, k] - x_bar[p, k])**2 + mu_x[omega][p, k] * (x[p, k] - x_bar[p, k]) for p in P for k in K
+        penalty_z = quicksum(
+            rho_z / 2 * (z[p, k] - z_bar[p, k])**2 + mu_z[omega][p, k] * (z[p, k] - z_bar[p, k]) for p in P for k in K
         )
 
 
@@ -257,11 +275,18 @@ for n in range(max_iter):
                 for p in P)
         )
 
-        # 总目标函数
-        model.setObjective(
-            FirstStageCost + SecondStageCost + penalty_t + penalty_x ,
-            GRB.MINIMIZE
-        )
+        if n == 0:
+            # 总目标函数
+            model.setObjective(
+                FirstStageCost + SecondStageCost ,
+                GRB.MINIMIZE
+            )
+        else:
+            # 总目标函数
+            model.setObjective(
+                FirstStageCost + SecondStageCost + penalty_t + penalty_z,
+                GRB.MINIMIZE
+            )
 
         # 一阶段约束
         # 固定初始出发时间
@@ -353,7 +378,7 @@ for n in range(max_iter):
             model.addConstr(theta[p] <= (np.pi / 2) - 0.1, name=f"ThetaMax_{p}")
 
             # 定义theta的取值点和对应的cos(theta)、tan(theta)值，用于PWL近似
-            theta_breakpoints = np.linspace(0.1, (np.pi / 2) - 0.1, 10)
+            theta_breakpoints = np.linspace(0.1, (np.pi / 2) - 0.1, 200)
             cos_theta_values = np.cos(theta_breakpoints)
             tan_theta_values = np.tan(theta_breakpoints)
             sin_theta_values = np.sin(theta_breakpoints)
@@ -427,7 +452,7 @@ for n in range(max_iter):
             model.addConstr(inverse_v_neca * v_neca[p] == 1, name=f"InverseV_H_{p}")
             # 总燃油消耗公式 这就很全面了。
             model.addConstr(R_M[p] == F * s_M * inverse_v_eca, name=f"FuelConsumptionM_{p}")
-            model.addConstr(R_H[p] == F * s_H * inverse_v_eca, name=f"FuelConsumptionH_{p}")
+            model.addConstr(R_H[p] == F * s_H * inverse_v_neca, name=f"FuelConsumptionH_{p}")
 
         # 燃油库存平衡
         for p in P:
@@ -435,12 +460,12 @@ for n in range(max_iter):
                 model.addConstr(q_M_arr[p] == B_M1, name=f"FuelInventoryArrivalM_{p}")
                 model.addConstr(q_H_arr[p] == B_H1, name=f"FuelInventoryArrivalH_{p}")
             else:
-                model.addConstr(q_M_arr[p] == q_M_dep[p - 1], name=f"FuelInventoryArrivalM_{p}")
-                model.addConstr(q_H_arr[p] == q_H_dep[p - 1], name=f"FuelInventoryArrivalH_{p}")
+                model.addConstr(q_M_arr[p] == q_M_dep[p - 1]- R_M[p-1], name=f"FuelInventoryArrivalM_{p}")
+                model.addConstr(q_H_arr[p] == q_H_dep[p - 1]- R_H[p-1], name=f"FuelInventoryArrivalH_{p}")
             # 燃油消耗在 P_ 中定义，需区分 p 是否在 P_
             if p in P_:
-                model.addConstr(q_M_dep[p] == q_M_arr[p] + x_b[p] * Q_M[p] - R_M[p], name=f"FuelInventoryDepartureM_{p}")
-                model.addConstr(q_H_dep[p] == q_H_arr[p] + x_b[p] * Q_H[p] - R_H[p], name=f"FuelInventoryDepartureH_{p}")
+                model.addConstr(q_M_dep[p] == q_M_arr[p] + x_b[p] * Q_M[p], name=f"FuelInventoryDepartureM_{p}")
+                model.addConstr(q_H_dep[p] == q_H_arr[p] + x_b[p] * Q_H[p], name=f"FuelInventoryDepartureH_{p}")
             else:
                 # 对于 p = N，需要调整燃油消耗
                 model.addConstr(q_M_dep[p] == q_M_arr[p] + x_b[p] * Q_M[p], name=f"FuelInventoryDepartureM_{p}")
@@ -495,8 +520,8 @@ for n in range(max_iter):
                 'x': {(p, k): x[p, k].X for p in P for k in K},
                 'z': {(p, k): z[p, k].X for p in P for k in K},
                 'mu_t': mu_t[omega].copy(),
-                'mu_x': mu_x[omega].copy(),
-                'obj': model.ObjVal,
+                'mu_z': mu_z[omega].copy(),
+                'obj': model.ObjVal, # 这个就是set_O
                 # 存储二阶段变量以便输出
                 't_arr': {p: t_arr[p].X for p in P},
                 't_arr_mod': {p: t_arr_mod[p].X if p !=1 else t_eta_mod[p].X for p in P},
@@ -536,34 +561,34 @@ for n in range(max_iter):
                 # 加油策略
                 refuel_strategy = '加油' if scenario_solutions[omega]['x_b'][p] > 0.5 else '不加油'
                 print(f"  加油策略: {refuel_strategy}")
-                print(f"    低硫燃油消耗: {scenario_solutions[omega]['R_M'][p]:.2f}")
-                print(f"    高硫燃油消耗: {scenario_solutions[omega]['R_H'][p]:.2f}")
+                print(f"    低硫燃油消耗: {scenario_solutions[omega]['R_M'][p]:.6f}")
+                print(f"    高硫燃油消耗: {scenario_solutions[omega]['R_H'][p]:.6f}")
                 # 绕行策略（仅对 p in P_）
                 if p in P_:
                     detour_strategy = '绕行' if scenario_solutions[omega]['y'][p] > 0.5 else '直接航线'
                     print(f"  从港口 {p} 到港口 {p+1} 的绕行策略: {detour_strategy}")
                     # 最优速度
-                    print(f"  从港口 {p} 到港口 {p+1} 的 ECA 航速: {scenario_solutions[omega]['v_eca'][p]:.2f} 节")
-                    print(f"  从港口 {p} 到港口 {p+1} 的非 ECA 航速: {scenario_solutions[omega]['v_neca'][p]:.2f} 节")
+                    print(f"  从港口 {p} 到港口 {p+1} 的 ECA 航速: {scenario_solutions[omega]['v_eca'][p]:.6f} 节")
+                    print(f"  从港口 {p} 到港口 {p+1} 的非 ECA 航速: {scenario_solutions[omega]['v_neca'][p]:.6f} 节")
                 else:
                     print(f"  没有后续航段。")
                 # 加油量
                 if scenario_solutions[omega]['x_b'][p] > 0.5:
-                    print(f"  加油量（低硫燃油）: {scenario_solutions[omega]['Q_M'][p]:.2f} 吨")
-                    print(f"  加油量（高硫燃油）: {scenario_solutions[omega]['Q_H'][p]:.2f} 吨")
+                    print(f"  加油量（低硫燃油）: {scenario_solutions[omega]['Q_M'][p]:.6f} 吨")
+                    print(f"  加油量（高硫燃油）: {scenario_solutions[omega]['Q_H'][p]:.6f} 吨")
                 else:
                     print(f"  加油量（低硫燃油）: 0.00 吨")
                     print(f"  加油量（高硫燃油）: 0.00 吨")
                 # ETA
-                print(f"  ETA（预计到达时间）: {scenario_solutions[omega]['t_eta'][p]:.2f} 小时")
+                print(f"  ETA（预计到达时间）: {scenario_solutions[omega]['t_eta'][p]:.6f} 小时")
                 # 实际到达时间
-                print(f"  实际到达时间: {scenario_solutions[omega]['t_arr'][p]:.2f} 小时")
+                print(f"  实际到达时间: {scenario_solutions[omega]['t_arr'][p]:.6f} 小时")
                 # 选择的时间窗
                 print(f"  {scenario_solutions[omega]['z'][p, 1]}, {scenario_solutions[omega]['z'][p, 2]}, {scenario_solutions[omega]['z'][p, 3]}, {scenario_solutions[omega]['z'][p, 4]}")
                 # 进港时间
-                print(f"  进港时间: {scenario_solutions[omega]['t_port_entry'][p]:.2f} 小时")
+                print(f"  进港时间: {scenario_solutions[omega]['t_port_entry'][p]:.6f} 小时")
                 # 等待时间
-                print(f"  等待时间: {scenario_solutions[omega]['t_wait'][p]:.2f} 小时")
+                print(f"  等待时间: {scenario_solutions[omega]['t_wait'][p]:.6f} 小时")
 
                 # 时间窗选择
                 selected_window = max(scenario_solutions[omega]['z'][p, k] for k in K)
@@ -573,12 +598,29 @@ for n in range(max_iter):
                         break
                 # 到达时间是当日具体时间
                 if p ==1:
-                    print(f"  当日到达时间（15d）: {scenario_solutions[omega]['t_eta_mod'][p]:.2f} 小时")
+                    print(f"  当日到达时间（15d）: {scenario_solutions[omega]['t_eta_mod'][p]:.6f} 小时")
                 else:
-                    print(f"  当日到达时间（15d）: {scenario_solutions[omega]['t_arr_mod'][p]:.2f} 小时")
+                    print(f"  当日到达时间（15d）: {scenario_solutions[omega]['t_arr_mod'][p]:.6f} 小时")
         else:
             print(f"情景 {omega} 求解未找到最优解。")
             break
+
+    # 计算完成所有的情景，开始迭代处理
+    if n == 0:
+        # 更新协调变量
+        for p in P:
+            t_eta_bar[p] = sum(p_omega[omega] * scenario_solutions[omega]['t_eta'][p] for omega in Omega)
+        for p in P:
+            for k in K:
+                z_bar[p, k] = sum(p_omega[omega] * scenario_solutions[omega]['z'][p, k] for omega in Omega)
+
+        # 更新拉格朗日乘子
+        for omega in Omega:
+            for p in P:
+                mu_t[omega][p] += rho_t * (scenario_solutions[omega]['t_eta'][p] - t_eta_bar[p])
+            for p in P:
+                for k in K:
+                    mu_z[omega][p, k] += rho_z * (scenario_solutions[omega]['z'][p, k] - z_bar[p, k])
 
     else:
         # 在更新协调变量之前计算收敛值
@@ -586,7 +628,7 @@ for n in range(max_iter):
             (scenario_solutions[omega]['t_eta'][p] - t_eta_bar[p])**2 for omega in Omega for p in P
         )
         convergence_x = sum(
-            (scenario_solutions[omega]['x'][p, k] - x_bar[p, k])**2 for omega in Omega for p in P for k in K
+            (scenario_solutions[omega]['z'][p, k] - z_bar[p, k])**2 for omega in Omega for p in P for k in K
         )
 
         print(f"\nt的收敛值：{convergence_t}")
@@ -602,18 +644,7 @@ for n in range(max_iter):
             t_eta_bar[p] = sum(p_omega[omega] * scenario_solutions[omega]['t_eta'][p] for omega in Omega)
         for p in P:
             for k in K:
-                x_bar[p, k] = sum(p_omega[omega] * scenario_solutions[omega]['x'][p, k] for omega in Omega)
-
-        # 新增变量的协调值更新
-        for p in P:
-            Q_M_bar[p] = sum(p_omega[omega] * scenario_solutions[omega]['Q_M'][p] for omega in Omega)
-            Q_H_bar[p] = sum(p_omega[omega] * scenario_solutions[omega]['Q_H'][p] for omega in Omega)
-        for p in P_:
-            v_eca_bar[p] = sum(p_omega[omega] * scenario_solutions[omega]['v_eca'][p] for omega in Omega)
-            v_neca_bar[p] = sum(p_omega[omega] * scenario_solutions[omega]['v_neca'][p] for omega in Omega)
-            y_bar[p] = sum(p_omega[omega] * scenario_solutions[omega]['y'][p] for omega in Omega)
-        for p in P:
-            x_b_bar[p] = sum(p_omega[omega] * scenario_solutions[omega]['x_b'][p] for omega in Omega)
+                z_bar[p, k] = sum(p_omega[omega] * scenario_solutions[omega]['z'][p, k] for omega in Omega)
 
         # 更新拉格朗日乘子
         for omega in Omega:
@@ -621,7 +652,7 @@ for n in range(max_iter):
                 mu_t[omega][p] += rho_t * (scenario_solutions[omega]['t_eta'][p] - t_eta_bar[p])
             for p in P:
                 for k in K:
-                    mu_x[omega][p, k] += rho_x * (scenario_solutions[omega]['x'][p, k] - x_bar[p, k])
+                    mu_z[omega][p, k] += rho_z * (scenario_solutions[omega]['z'][p, k] - z_bar[p, k])
 
 
         # 继续下一次迭代
@@ -634,7 +665,7 @@ for p in P:
     print(f"  港口 {p}:")
     print(f"    ETA（预计到达时间）: {t_eta_bar[p]:.2f}")
     for k in K:
-        print(f"    时间窗口 {k}: 权重 = {x_bar[p, k]:.2f}")
+        print(f"    时间窗口 {k}: 权重 = {z_bar[p, k]:.2f}")
 
 # 输出每个情景的解
 for omega in Omega:
@@ -701,3 +732,8 @@ for omega in Omega:
 average_obj = sum(p_omega[omega] * scenario_solutions[omega]['obj'] for omega in Omega)
 print(f"\n平均目标函数值：{average_obj}")
 
+# 解除重定向
+
+# 当所有打印完成后，恢复原始的stdout
+sys.stdout = original_stdout
+file.close()
