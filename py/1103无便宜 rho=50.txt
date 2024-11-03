@@ -1,0 +1,3168 @@
+
+--- PHA 迭代 1 ---
+Set parameter Username
+Academic license - for non-commercial use only - expires 2025-10-23
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0x8dc2c457
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.03s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984177.853    0   56          - 984177.853      -     -    0s
+     0     0 1059923.80    0   55          - 1059923.80      -     -    0s
+     0     0 1059923.80    0   55          - 1059923.80      -     -    0s
+     0     0 1059923.80    0   55          - 1059923.80      -     -    0s
+     0     0 1060326.60    0   55          - 1060326.60      -     -    0s
+     0     0 1073362.31    0   64          - 1073362.31      -     -    0s
+H    0     0                    1348082.5824 1073362.31  20.4%     -    0s
+     0     0 1073362.31    0   50 1348082.58 1073362.31  20.4%     -    0s
+H    0     0                    1305822.3431 1073362.31  17.8%     -    0s
+     0     0 1073362.31    0   53 1305822.34 1073362.31  17.8%     -    0s
+H    0     0                    1259515.9782 1073362.31  14.8%     -    0s
+     0     0 1074486.90    0   55 1259515.98 1074486.90  14.7%     -    0s
+     0     0 1080963.14    0   63 1259515.98 1080963.14  14.2%     -    0s
+     0     0 1095332.54    0   59 1259515.98 1095332.54  13.0%     -    0s
+H    0     0                    1209152.1699 1095337.58  9.41%     -    0s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Implied bound: 8
+  MIR: 2
+  Flow cover: 3
+  RLT: 26
+
+Explored 1 nodes (819 simplex iterations) in 0.53 seconds (0.16 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 5: 1.20915e+06 1.25952e+06 1.30582e+06 ... 1.42837e+06
+
+Optimal solution found (tolerance 1.00e-01)
+Best objective 1.209152169870e+06, best bound 1.095337580391e+06, gap 9.4128%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+
+情景 1 的结果：
+港口 1:
+  加油策略: 不加油
+    低硫燃油消耗: 1.687591
+    高硫燃油消耗: 0.000000
+  从港口 1 到港口 2 的绕行策略: 直接航线
+  从港口 1 到港口 2 的 ECA 航速: 12.706474 节
+  从港口 1 到港口 2 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 8.000000 小时
+  实际到达时间: 8.000000 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 0.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 8.000000 小时
+港口 2:
+  加油策略: 加油
+    低硫燃油消耗: 7.041247
+    高硫燃油消耗: 0.000000
+  从港口 2 到港口 3 的绕行策略: 直接航线
+  从港口 2 到港口 3 的 ECA 航速: 12.706474 节
+  从港口 2 到港口 3 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 8.687591 吨
+  加油量（高硫燃油）: 0.000000 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 23.552547 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 24.000000 小时
+  等待时间: 0.447453 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 23.552547 小时
+港口 3:
+  加油策略: 加油
+    低硫燃油消耗: 3.126953
+    高硫燃油消耗: 0.000000
+  从港口 3 到港口 4 的绕行策略: 直接航线
+  从港口 3 到港口 4 的 ECA 航速: 12.706474 节
+  从港口 3 到港口 4 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 6.996518 吨
+  加油量（高硫燃油）: 0.000000 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 63.975254 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 63.975254 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 63.975254 小时
+港口 4:
+  加油策略: 不加油
+    低硫燃油消耗: 3.347415
+    高硫燃油消耗: 0.000000
+  从港口 4 到港口 5 的绕行策略: 直接航线
+  从港口 4 到港口 5 的 ECA 航速: 12.706474 节
+  从港口 4 到港口 5 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 79.003895 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 84.000000 小时
+  等待时间: 4.996105 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 79.003895 小时
+港口 5:
+  加油策略: 不加油
+    低硫燃油消耗: 0.480902
+    高硫燃油消耗: 0.000000
+  从港口 5 到港口 6 的绕行策略: 直接航线
+  从港口 5 到港口 6 的 ECA 航速: 12.706474 节
+  从港口 5 到港口 6 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 99.870664 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 101.982272 小时
+  等待时间: 2.111608 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 99.870664 小时
+港口 6:
+  加油策略: 不加油
+    低硫燃油消耗: 0.000000
+    高硫燃油消耗: 0.000000
+  没有后续航段。
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 110.000000 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 110.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 110.000000 小时
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0x44d008a4
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.03s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984177.853    0   56          - 984177.853      -     -    0s
+     0     0 1059911.52    0   55          - 1059911.52      -     -    0s
+     0     0 1059911.52    0   55          - 1059911.52      -     -    0s
+     0     0 1059911.52    0   55          - 1059911.52      -     -    0s
+     0     0 1060317.37    0   55          - 1060317.37      -     -    0s
+     0     0 1073354.67    0   65          - 1073354.67      -     -    0s
+H    0     0                    1348061.7758 1073354.67  20.4%     -    0s
+     0     0 1073354.67    0   50 1348061.78 1073354.67  20.4%     -    0s
+H    0     0                    1305780.7300 1073354.67  17.8%     -    0s
+     0     0 1073354.67    0   53 1305780.73 1073354.67  17.8%     -    0s
+     0     0 1074487.95    0   53 1305780.73 1074487.95  17.7%     -    0s
+     0     0 1080967.79    0   61 1305780.73 1080967.79  17.2%     -    0s
+     0     0 1095335.82    0   57 1305780.73 1095335.82  16.1%     -    0s
+     0     0 1095348.06    0   56 1305780.73 1095348.06  16.1%     -    0s
+     0     0 1095541.19    0   53 1305780.73 1095541.19  16.1%     -    0s
+     0     0 1095544.16    0   53 1305780.73 1095544.16  16.1%     -    0s
+     0     0 1095544.29    0   53 1305780.73 1095544.29  16.1%     -    0s
+     0     0 1095544.29    0   53 1305780.73 1095544.29  16.1%     -    0s
+     0     2 1095544.29    0   53 1305780.73 1095544.29  16.1%     -    0s
+H   35    55                    1185644.5609 1099659.52  7.25%  13.6    1s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Implied bound: 7
+  MIR: 2
+  Flow cover: 6
+  RLT: 48
+
+Explored 59 nodes (1721 simplex iterations) in 1.28 seconds (0.31 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 4: 1.18564e+06 1.30578e+06 1.34806e+06 1.42835e+06 
+
+Optimal solution found (tolerance 1.00e-01)
+Warning: max constraint violation (7.1658e-04) exceeds tolerance
+Warning: max general constraint violation (7.1658e-04) exceeds tolerance
+Best objective 1.185644560865e+06, best bound 1.101153076345e+06, gap 7.1262%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.4444 radians
+sin(theta) = 0.4299, cos(theta) = 0.9029, cot(theta) = 2.1000
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+
+情景 2 的结果：
+港口 1:
+  加油策略: 不加油
+    低硫燃油消耗: 2.821556
+    高硫燃油消耗: 0.000000
+  从港口 1 到港口 2 的绕行策略: 直接航线
+  从港口 1 到港口 2 的 ECA 航速: 16.266403 节
+  从港口 1 到港口 2 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 8.000000 小时
+  实际到达时间: 8.000000 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 0.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 8.000000 小时
+港口 2:
+  加油策略: 加油
+    低硫燃油消耗: 0.744599
+    高硫燃油消耗: 7.000000
+  从港口 2 到港口 3 的绕行策略: 绕行
+  从港口 2 到港口 3 的 ECA 航速: 11.396877 节
+  从港口 2 到港口 3 的非 ECA 航速: 14.243206 节
+  加油量（低硫燃油）: 9.821556 吨
+  加油量（高硫燃油）: 7.000000 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 22.902355 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 24.000000 小时
+  等待时间: 1.097645 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 22.902355 小时
+港口 3:
+  加油策略: 不加油
+    低硫燃油消耗: 3.115522
+    高硫燃油消耗: 0.000000
+  从港口 3 到港口 4 的绕行策略: 直接航线
+  从港口 3 到港口 4 的 ECA 航速: 12.680181 节
+  从港口 3 到港口 4 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 57.795042 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 62.000000 小时
+  等待时间: 4.204958 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 57.795042 小时
+港口 4:
+  加油策略: 不加油
+    低硫燃油消耗: 2.734749
+    高硫燃油消耗: 0.000000
+  从港口 4 到港口 5 的绕行策略: 直接航线
+  从港口 4 到港口 5 的 ECA 航速: 11.511313 节
+  从港口 4 到港口 5 的非 ECA 航速: 18.496421 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 77.059147 小时
+  0.0, 0.0, 1.0, 0.0
+  进港时间: 94.000000 小时
+  等待时间: 16.940853 小时
+  选择的时间窗口: 3
+  当日到达时间（15d）: 77.059147 小时
+港口 5:
+  加油策略: 不加油
+    低硫燃油消耗: 0.405130
+    高硫燃油消耗: 0.000000
+  从港口 5 到港口 6 的绕行策略: 直接航线
+  从港口 5 到港口 6 的 ECA 航速: 11.663958 节
+  从港口 5 到港口 6 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 111.533573 小时
+  0.0, 0.0, 0.0, 1.0
+  进港时间: 130.304373 小时
+  等待时间: 18.770799 小时
+  选择的时间窗口: 4
+  当日到达时间（15d）: 111.533573 小时
+港口 6:
+  加油策略: 不加油
+    低硫燃油消耗: 0.000000
+    高硫燃油消耗: 0.000000
+  没有后续航段。
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 140.000000 小时
+  0.0, 0.0, 1.0, 0.0
+  进港时间: 140.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 3
+  当日到达时间（15d）: 140.000000 小时
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0x226246e5
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.03s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984170.436    0   56          - 984170.436      -     -    0s
+     0     0 1059895.50    0   54          - 1059895.50      -     -    0s
+     0     0 1059895.50    0   54          - 1059895.50      -     -    0s
+     0     0 1059895.50    0   54          - 1059895.50      -     -    0s
+     0     0 1060301.35    0   54          - 1060301.35      -     -    0s
+     0     0 1073274.91    0   68          - 1073274.91      -     -    0s
+H    0     0                    1348020.0471 1073274.91  20.4%     -    0s
+     0     0 1073274.91    0   50 1348020.05 1073274.91  20.4%     -    0s
+H    0     0                    1305768.1305 1073274.91  17.8%     -    0s
+     0     0 1073274.91    0   53 1305768.13 1073274.91  17.8%     -    0s
+     0     0 1074489.55    0   54 1305768.13 1074489.55  17.7%     -    0s
+     0     0 1080956.03    0   61 1305768.13 1080956.03  17.2%     -    0s
+     0     0 1095329.57    0   56 1305768.13 1095329.57  16.1%     -    0s
+     0     0 1095338.82    0   57 1305768.13 1095338.82  16.1%     -    0s
+     0     0 1095528.91    0   53 1305768.13 1095528.91  16.1%     -    0s
+     0     0 1095531.87    0   53 1305768.13 1095531.87  16.1%     -    0s
+     0     0 1095535.42    0   53 1305768.13 1095535.42  16.1%     -    0s
+     0     0 1095535.99    0   53 1305768.13 1095535.99  16.1%     -    0s
+     0     0 1095535.99    0   53 1305768.13 1095535.99  16.1%     -    0s
+     0     2 1095535.99    0   53 1305768.13 1095535.99  16.1%     -    0s
+H   35    55                    1185557.5851 1099614.47  7.25%  12.1    1s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Implied bound: 7
+  MIR: 4
+  Flow cover: 6
+  RLT: 51
+
+Explored 59 nodes (1745 simplex iterations) in 1.28 seconds (0.31 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 4: 1.18556e+06 1.30577e+06 1.34802e+06 1.4283e+06 
+
+Optimal solution found (tolerance 1.00e-01)
+Warning: max constraint violation (1.8612e-04) exceeds tolerance
+Warning: max general constraint violation (1.8612e-04) exceeds tolerance
+Best objective 1.185557585053e+06, best bound 1.101146544694e+06, gap 7.1199%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.4444 radians
+sin(theta) = 0.4299, cos(theta) = 0.9029, cot(theta) = 2.1000
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+
+情景 3 的结果：
+港口 1:
+  加油策略: 不加油
+    低硫燃油消耗: 2.821556
+    高硫燃油消耗: 0.000000
+  从港口 1 到港口 2 的绕行策略: 直接航线
+  从港口 1 到港口 2 的 ECA 航速: 16.266403 节
+  从港口 1 到港口 2 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 8.000000 小时
+  实际到达时间: 8.000000 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 0.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 8.000000 小时
+港口 2:
+  加油策略: 加油
+    低硫燃油消耗: 1.342908
+    高硫燃油消耗: 9.141555
+  从港口 2 到港口 3 的绕行策略: 绕行
+  从港口 2 到港口 3 的 ECA 航速: 15.130843 节
+  从港口 2 到港口 3 的非 ECA 航速: 16.308296 节
+  加油量（低硫燃油）: 9.821556 吨
+  加油量（高硫燃油）: 7.000000 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 22.902355 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 24.000000 小时
+  等待时间: 1.097645 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 22.902355 小时
+港口 3:
+  加油策略: 加油
+    低硫燃油消耗: 3.163283
+    高硫燃油消耗: 0.000000
+  从港口 3 到港口 4 的绕行策略: 直接航线
+  从港口 3 到港口 4 的 ECA 航速: 12.768155 节
+  从港口 3 到港口 4 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 1.342908 吨
+  加油量（高硫燃油）: 2.141555 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 53.794094 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 62.000000 小时
+  等待时间: 8.205906 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 53.794094 小时
+港口 4:
+  加油策略: 不加油
+    低硫燃油消耗: 3.355815
+    高硫燃油消耗: 0.000000
+  从港口 4 到港口 5 的绕行策略: 直接航线
+  从港口 4 到港口 5 的 ECA 航速: 12.719745 节
+  从港口 4 到港口 5 的非 ECA 航速: 20.562452 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 76.957569 小时
+  0.0, 0.0, 1.0, 0.0
+  进港时间: 94.000000 小时
+  等待时间: 17.042431 小时
+  选择的时间窗口: 3
+  当日到达时间（15d）: 76.957569 小时
+港口 5:
+  加油策略: 不加油
+    低硫燃油消耗: 0.480902
+    高硫燃油消耗: 0.000000
+  从港口 5 到港口 6 的绕行策略: 直接航线
+  从港口 5 到港口 6 的 ECA 航速: 12.706474 节
+  从港口 5 到港口 6 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 109.881956 小时
+  0.0, 0.0, 0.0, 1.0
+  进港时间: 130.506605 小时
+  等待时间: 20.624649 小时
+  选择的时间窗口: 4
+  当日到达时间（15d）: 109.881956 小时
+港口 6:
+  加油策略: 不加油
+    低硫燃油消耗: 0.000000
+    高硫燃油消耗: 0.000000
+  没有后续航段。
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 140.000000 小时
+  0.0, 0.0, 1.0, 0.0
+  进港时间: 140.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 3
+  当日到达时间（15d）: 140.000000 小时
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0x50f78964
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.03s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984170.436    0   56          - 984170.436      -     -    0s
+     0     0 1059902.30    0   54          - 1059902.30      -     -    0s
+     0     0 1059902.30    0   54          - 1059902.30      -     -    0s
+     0     0 1059902.30    0   54          - 1059902.30      -     -    0s
+     0     0 1060308.16    0   54          - 1060308.16      -     -    0s
+     0     0 1073284.52    0   68          - 1073284.52      -     -    0s
+H    0     0                    1348020.0471 1073284.52  20.4%     -    0s
+     0     0 1073284.52    0   50 1348020.05 1073284.52  20.4%     -    0s
+H    0     0                    1305793.0983 1073284.52  17.8%     -    0s
+     0     0 1073284.52    0   53 1305793.10 1073284.52  17.8%     -    0s
+     0     0 1074489.55    0   54 1305793.10 1074489.55  17.7%     -    0s
+     0     0 1080956.03    0   61 1305793.10 1080956.03  17.2%     -    0s
+     0     0 1095329.57    0   56 1305793.10 1095329.57  16.1%     -    0s
+     0     0 1095338.82    0   57 1305793.10 1095338.82  16.1%     -    0s
+     0     0 1095528.91    0   53 1305793.10 1095528.91  16.1%     -    0s
+     0     0 1095531.87    0   53 1305793.10 1095531.87  16.1%     -    0s
+     0     0 1095535.42    0   53 1305793.10 1095535.42  16.1%     -    0s
+     0     0 1095535.99    0   53 1305793.10 1095535.99  16.1%     -    0s
+     0     0 1095535.99    0   53 1305793.10 1095535.99  16.1%     -    0s
+     0     2 1095535.99    0   53 1305793.10 1095535.99  16.1%     -    0s
+H   35    55                    1185585.8212 1099614.47  7.25%  12.1    1s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Implied bound: 7
+  MIR: 4
+  Flow cover: 6
+  RLT: 51
+
+Explored 59 nodes (1745 simplex iterations) in 1.18 seconds (0.31 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 4: 1.18559e+06 1.30579e+06 1.34802e+06 1.4283e+06 
+
+Optimal solution found (tolerance 1.00e-01)
+Warning: max constraint violation (3.3119e-04) exceeds tolerance
+Warning: max general constraint violation (3.3119e-04) exceeds tolerance
+Best objective 1.185585821231e+06, best bound 1.101146544694e+06, gap 7.1222%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.4444 radians
+sin(theta) = 0.4299, cos(theta) = 0.9029, cot(theta) = 2.1000
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+
+情景 4 的结果：
+港口 1:
+  加油策略: 不加油
+    低硫燃油消耗: 2.821556
+    高硫燃油消耗: 0.000000
+  从港口 1 到港口 2 的绕行策略: 直接航线
+  从港口 1 到港口 2 的 ECA 航速: 16.266403 节
+  从港口 1 到港口 2 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 8.000000 小时
+  实际到达时间: 8.000000 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 0.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 8.000000 小时
+港口 2:
+  加油策略: 加油
+    低硫燃油消耗: 1.133522
+    高硫燃油消耗: 9.141555
+  从港口 2 到港口 3 的绕行策略: 绕行
+  从港口 2 到港口 3 的 ECA 航速: 13.947222 节
+  从港口 2 到港口 3 的非 ECA 航速: 16.308296 节
+  加油量（低硫燃油）: 9.821556 吨
+  加油量（高硫燃油）: 7.000000 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 22.902355 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 24.000000 小时
+  等待时间: 1.097645 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 22.902355 小时
+港口 3:
+  加油策略: 加油
+    低硫燃油消耗: 3.169741
+    高硫燃油消耗: 0.000000
+  从港口 3 到港口 4 的绕行策略: 直接航线
+  从港口 3 到港口 4 的 ECA 航速: 12.779181 节
+  从港口 3 到港口 4 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 1.133522 吨
+  加油量（高硫燃油）: 2.141555 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 54.107184 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 62.000000 小时
+  等待时间: 7.892816 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 54.107184 小时
+港口 4:
+  加油策略: 不加油
+    低硫燃油消耗: 3.339004
+    高硫燃油消耗: 0.000000
+  从港口 4 到港口 5 的绕行策略: 直接航线
+  从港口 4 到港口 5 的 ECA 航速: 12.688389 节
+  从港口 4 到港口 5 的非 ECA 航速: 24.413962 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 76.944936 小时
+  0.0, 0.0, 1.0, 0.0
+  进港时间: 94.000000 小时
+  等待时间: 17.055064 小时
+  选择的时间窗口: 3
+  当日到达时间（15d）: 76.944936 小时
+港口 5:
+  加油策略: 不加油
+    低硫燃油消耗: 0.491255
+    高硫燃油消耗: 0.000000
+  从港口 5 到港口 6 的绕行策略: 直接航线
+  从港口 5 到港口 6 的 ECA 航速: 12.821238 节
+  从港口 5 到港口 6 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 109.920836 小时
+  0.0, 0.0, 0.0, 1.0
+  进港时间: 130.526858 小时
+  等待时间: 20.606021 小时
+  选择的时间窗口: 4
+  当日到达时间（15d）: 109.920836 小时
+港口 6:
+  加油策略: 不加油
+    低硫燃油消耗: 0.000000
+    高硫燃油消耗: 0.000000
+  没有后续航段。
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 140.000000 小时
+  0.0, 0.0, 1.0, 0.0
+  进港时间: 140.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 3
+  当日到达时间（15d）: 140.000000 小时
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0xbb651500
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.03s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984186.752    0   56          - 984186.752      -     -    0s
+     0     0 1059912.51    0   54          - 1059912.51      -     -    0s
+     0     0 1059912.51    0   54          - 1059912.51      -     -    0s
+     0     0 1059912.51    0   54          - 1059912.51      -     -    0s
+     0     0 1060326.86    0   54          - 1060326.86      -     -    0s
+     0     0 1080743.83    0   67          - 1080743.83      -     -    0s
+H    0     0                    1348249.3817 1080743.83  19.8%     -    0s
+     0     0 1080743.83    0   50 1348249.38 1080743.83  19.8%     -    0s
+H    0     0                    1305928.4617 1080743.83  17.2%     -    0s
+     0     0 1080743.83    0   53 1305928.46 1080743.83  17.2%     -    0s
+H    0     0                    1259650.8312 1080743.83  14.2%     -    0s
+     0     0 1080743.83    0   54 1259650.83 1080743.83  14.2%     -    0s
+     0     0 1081147.30    0   63 1259650.83 1081147.30  14.2%     -    0s
+     0     0 1095339.17    0   57 1259650.83 1095339.17  13.0%     -    0s
+H    0     0                    1209287.0229 1095342.25  9.42%     -    0s
+
+Cutting planes:
+  Cover: 1
+  Implied bound: 3
+  MIR: 4
+  Flow cover: 2
+  RLT: 27
+
+Explored 1 nodes (883 simplex iterations) in 0.47 seconds (0.16 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 5: 1.20929e+06 1.25965e+06 1.30593e+06 ... 1.42853e+06
+
+Optimal solution found (tolerance 1.00e-01)
+Best objective 1.209287022855e+06, best bound 1.095342252641e+06, gap 9.4225%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+
+情景 5 的结果：
+港口 1:
+  加油策略: 加油
+    低硫燃油消耗: 1.687591
+    高硫燃油消耗: 0.000000
+  从港口 1 到港口 2 的绕行策略: 直接航线
+  从港口 1 到港口 2 的 ECA 航速: 12.706474 节
+  从港口 1 到港口 2 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 7.000000 吨
+  加油量（高硫燃油）: 0.000000 吨
+  ETA（预计到达时间）: 8.000000 小时
+  实际到达时间: 8.000000 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 0.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 8.000000 小时
+港口 2:
+  加油策略: 不加油
+    低硫燃油消耗: 7.041247
+    高硫燃油消耗: 0.000000
+  从港口 2 到港口 3 的绕行策略: 直接航线
+  从港口 2 到港口 3 的 ECA 航速: 12.706474 节
+  从港口 2 到港口 3 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 23.552547 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 24.000000 小时
+  等待时间: 0.447453 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 23.552547 小时
+港口 3:
+  加油策略: 加油
+    低硫燃油消耗: 3.126953
+    高硫燃油消耗: 0.000000
+  从港口 3 到港口 4 的绕行策略: 直接航线
+  从港口 3 到港口 4 的 ECA 航速: 12.706474 节
+  从港口 3 到港口 4 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 8.684109 吨
+  加油量（高硫燃油）: 0.000000 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 63.975254 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 63.975254 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 63.975254 小时
+港口 4:
+  加油策略: 不加油
+    低硫燃油消耗: 3.347415
+    高硫燃油消耗: 0.000000
+  从港口 4 到港口 5 的绕行策略: 直接航线
+  从港口 4 到港口 5 的 ECA 航速: 12.706474 节
+  从港口 4 到港口 5 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 79.003895 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 84.000000 小时
+  等待时间: 4.996105 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 79.003895 小时
+港口 5:
+  加油策略: 不加油
+    低硫燃油消耗: 0.480902
+    高硫燃油消耗: 0.000000
+  从港口 5 到港口 6 的绕行策略: 直接航线
+  从港口 5 到港口 6 的 ECA 航速: 12.706474 节
+  从港口 5 到港口 6 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 99.870664 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 101.982272 小时
+  等待时间: 2.111608 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 99.870664 小时
+港口 6:
+  加油策略: 不加油
+    低硫燃油消耗: 0.000000
+    高硫燃油消耗: 0.000000
+  没有后续航段。
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 110.000000 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 110.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 110.000000 小时
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0x8a401a2e
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.03s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984200.101    0   56          - 984200.101      -     -    0s
+     0     0 1059939.44    0   55          - 1059939.44      -     -    0s
+     0     0 1059939.44    0   55          - 1059939.44      -     -    0s
+     0     0 1059939.44    0   55          - 1059939.44      -     -    0s
+     0     0 1060354.13    0   55          - 1060354.13      -     -    0s
+     0     0 1073386.19    0   65          - 1073386.19      -     -    0s
+H    0     0                    1348249.3817 1073386.19  20.4%     -    0s
+     0     0 1073386.19    0   50 1348249.38 1073386.19  20.4%     -    0s
+H    0     0                    1305976.6585 1073386.19  17.8%     -    0s
+     0     0 1073386.19    0   53 1305976.66 1073386.19  17.8%     -    0s
+     0     0 1074519.45    0   53 1305976.66 1074519.45  17.7%     -    0s
+     0     0 1080999.89    0   61 1305976.66 1080999.89  17.2%     -    0s
+     0     0 1095367.92    0   57 1305976.66 1095367.92  16.1%     -    0s
+     0     0 1095380.39    0   56 1305976.66 1095380.39  16.1%     -    0s
+     0     0 1095574.01    0   53 1305976.66 1095574.01  16.1%     -    0s
+     0     0 1095576.98    0   53 1305976.66 1095576.98  16.1%     -    0s
+     0     0 1095577.17    0   53 1305976.66 1095577.17  16.1%     -    0s
+     0     0 1095577.17    0   53 1305976.66 1095577.17  16.1%     -    0s
+     0     2 1095577.17    0   53 1305976.66 1095577.17  16.1%     -    0s
+H   35    55                    1185909.2586 1099717.71  7.27%  13.5    1s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Implied bound: 7
+  MIR: 2
+  Flow cover: 6
+  RLT: 49
+
+Explored 59 nodes (1754 simplex iterations) in 1.26 seconds (0.31 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 4: 1.18591e+06 1.30598e+06 1.34825e+06 1.42853e+06 
+
+Optimal solution found (tolerance 1.00e-01)
+Warning: max constraint violation (8.5043e-04) exceeds tolerance
+Warning: max general constraint violation (8.5043e-04) exceeds tolerance
+Best objective 1.185909258613e+06, best bound 1.101215312336e+06, gap 7.1417%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.4444 radians
+sin(theta) = 0.4299, cos(theta) = 0.9029, cot(theta) = 2.1000
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+
+情景 6 的结果：
+港口 1:
+  加油策略: 不加油
+    低硫燃油消耗: 2.612032
+    高硫燃油消耗: 0.000000
+  从港口 1 到港口 2 的绕行策略: 直接航线
+  从港口 1 到港口 2 的 ECA 航速: 15.642828 节
+  从港口 1 到港口 2 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 8.000000 小时
+  实际到达时间: 8.000000 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 0.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 8.000000 小时
+港口 2:
+  加油策略: 加油
+    低硫燃油消耗: 0.767819
+    高硫燃油消耗: 6.981497
+  从港口 2 到港口 3 的绕行策略: 绕行
+  从港口 2 到港口 3 的 ECA 航速: 11.542927 节
+  从港口 2 到港口 3 的非 ECA 航速: 14.225504 节
+  加油量（低硫燃油）: 9.611486 吨
+  加油量（高硫燃油）: 6.981497 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 23.149601 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 24.000000 小时
+  等待时间: 0.850399 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 23.149601 小时
+港口 3:
+  加油策略: 不加油
+    低硫燃油消耗: 3.123485
+    高硫燃油消耗: 0.000000
+  从港口 3 到港口 4 的绕行策略: 直接航线
+  从港口 3 到港口 4 的 ECA 航速: 12.698486 节
+  从港口 3 到港口 4 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 57.760508 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 62.000000 小时
+  等待时间: 4.239492 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 57.760508 小时
+港口 4:
+  加油策略: 不加油
+    低硫燃油消耗: 2.724789
+    高硫燃油消耗: 0.000000
+  从港口 4 到港口 5 的绕行策略: 直接航线
+  从港口 4 到港口 5 的 ECA 航速: 11.493738 节
+  从港口 4 到港口 5 的非 ECA 航速: 20.562452 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 77.037896 小时
+  0.0, 0.0, 1.0, 0.0
+  进港时间: 94.000000 小时
+  等待时间: 16.962104 小时
+  选择的时间窗口: 3
+  当日到达时间（15d）: 77.037896 小时
+港口 5:
+  加油策略: 不加油
+    低硫燃油消耗: 0.383360
+    高硫燃油消耗: 0.000000
+  从港口 5 到港口 6 的绕行策略: 直接航线
+  从港口 5 到港口 6 的 ECA 航速: 11.394647 节
+  从港口 5 到港口 6 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 111.560155 小时
+  0.0, 0.0, 0.0, 1.0
+  进港时间: 130.246116 小时
+  等待时间: 18.685961 小时
+  选择的时间窗口: 4
+  当日到达时间（15d）: 111.560155 小时
+港口 6:
+  加油策略: 不加油
+    低硫燃油消耗: 0.000000
+    高硫燃油消耗: 0.000000
+  没有后续航段。
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 140.000000 小时
+  0.0, 0.0, 1.0, 0.0
+  进港时间: 140.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 3
+  当日到达时间（15d）: 140.000000 小时
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0xafa01c1e
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.03s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984200.101    0   56          - 984200.101      -     -    0s
+     0     0 1059944.92    0   55          - 1059944.92      -     -    0s
+     0     0 1059944.92    0   55          - 1059944.92      -     -    0s
+     0     0 1059944.92    0   55          - 1059944.92      -     -    0s
+     0     0 1060356.21    0   55          - 1060356.21      -     -    0s
+     0     0 1073383.07    0   65          - 1073383.07      -     -    0s
+H    0     0                    1348249.3817 1073383.07  20.4%     -    0s
+     0     0 1073383.07    0   50 1348249.38 1073383.07  20.4%     -    0s
+H    0     0                    1305997.4650 1073383.07  17.8%     -    0s
+     0     0 1073383.07    0   53 1305997.47 1073383.07  17.8%     -    0s
+     0     0 1074518.11    0   53 1305997.47 1074518.11  17.7%     -    0s
+     0     0 1080997.42    0   61 1305997.47 1080997.42  17.2%     -    0s
+     0     0 1095365.45    0   57 1305997.47 1095365.45  16.1%     -    0s
+     0     0 1095377.93    0   56 1305997.47 1095377.93  16.1%     -    0s
+     0     0 1095571.54    0   53 1305997.47 1095571.54  16.1%     -    0s
+     0     0 1095574.51    0   53 1305997.47 1095574.51  16.1%     -    0s
+     0     0 1095574.70    0   53 1305997.47 1095574.70  16.1%     -    0s
+     0     0 1095574.70    0   53 1305997.47 1095574.70  16.1%     -    0s
+     0     2 1095574.70    0   53 1305997.47 1095574.70  16.1%     -    0s
+H   35    55                    1185872.5586 1099704.66  7.27%  13.5    1s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Implied bound: 7
+  MIR: 2
+  Flow cover: 6
+  RLT: 49
+
+Explored 59 nodes (1738 simplex iterations) in 1.32 seconds (0.31 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 4: 1.18587e+06 1.306e+06 1.34825e+06 1.42853e+06 
+
+Optimal solution found (tolerance 1.00e-01)
+Warning: max constraint violation (7.1513e-04) exceeds tolerance
+Warning: max general constraint violation (7.1513e-04) exceeds tolerance
+Best objective 1.185872558600e+06, best bound 1.101202533913e+06, gap 7.1399%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.4444 radians
+sin(theta) = 0.4299, cos(theta) = 0.9029, cot(theta) = 2.1000
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+
+情景 7 的结果：
+港口 1:
+  加油策略: 不加油
+    低硫燃油消耗: 2.537558
+    高硫燃油消耗: 0.000000
+  从港口 1 到港口 2 的绕行策略: 直接航线
+  从港口 1 到港口 2 的 ECA 航速: 15.432545 节
+  从港口 1 到港口 2 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 8.000000 小时
+  实际到达时间: 8.000000 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 0.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 8.000000 小时
+港口 2:
+  加油策略: 加油
+    低硫燃油消耗: 0.744599
+    高硫燃油消耗: 6.999143
+  从港口 2 到港口 3 的绕行策略: 绕行
+  从港口 2 到港口 3 的 ECA 航速: 11.396877 节
+  从港口 2 到港口 3 的非 ECA 航速: 14.242386 节
+  加油量（低硫燃油）: 9.537558 吨
+  加油量（高硫燃油）: 6.999143 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 23.237483 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 24.000000 小时
+  等待时间: 0.762517 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 23.237483 小时
+港口 3:
+  加油策略: 不加油
+    低硫燃油消耗: 3.095576
+    高硫燃油消耗: 0.000000
+  从港口 3 到港口 4 的绕行策略: 直接航线
+  从港口 3 到港口 4 的 ECA 航速: 12.634556 节
+  从港口 3 到港口 4 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 57.796312 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 62.000000 小时
+  等待时间: 4.203688 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 57.796312 小时
+港口 4:
+  加油策略: 不加油
+    低硫燃油消耗: 2.776465
+    高硫燃油消耗: 0.000000
+  从港口 4 到港口 5 的绕行策略: 直接航线
+  从港口 4 到港口 5 的 ECA 航速: 11.585513 节
+  从港口 4 到港口 5 的非 ECA 航速: 24.413962 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 77.112385 小时
+  0.0, 0.0, 1.0, 0.0
+  进港时间: 94.000000 小时
+  等待时间: 16.887615 小时
+  选择的时间窗口: 3
+  当日到达时间（15d）: 77.112385 小时
+港口 5:
+  加油策略: 不加油
+    低硫燃油消耗: 0.383360
+    高硫燃油消耗: 0.000000
+  从港口 5 到港口 6 的绕行策略: 直接航线
+  从港口 5 到港口 6 的 ECA 航速: 11.394647 节
+  从港口 5 到港口 6 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 111.422233 小时
+  0.0, 0.0, 0.0, 1.0
+  进港时间: 130.246116 小时
+  等待时间: 18.823883 小时
+  选择的时间窗口: 4
+  当日到达时间（15d）: 111.422233 小时
+港口 6:
+  加油策略: 不加油
+    低硫燃油消耗: 0.000000
+    高硫燃油消耗: 0.000000
+  没有后续航段。
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 140.000000 小时
+  0.0, 0.0, 1.0, 0.0
+  进港时间: 140.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 3
+  当日到达时间（15d）: 140.000000 小时
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0xb363527a
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.03s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.01 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984200.101    0   56          - 984200.101      -     -    0s
+     0     0 1059917.28    0   54          - 1059917.28      -     -    0s
+     0     0 1059917.28    0   54          - 1059917.28      -     -    0s
+     0     0 1059917.28    0   54          - 1059917.28      -     -    0s
+     0     0 1060328.57    0   54          - 1060328.57      -     -    0s
+     0     0 1073298.63    0   68          - 1073298.63      -     -    0s
+H    0     0                    1348249.3817 1073298.63  20.4%     -    0s
+     0     0 1073298.63    0   50 1348249.38 1073298.63  20.4%     -    0s
+H    0     0                    1305976.6585 1073298.63  17.8%     -    0s
+     0     0 1073298.63    0   53 1305976.66 1073298.63  17.8%     -    0s
+     0     0 1074526.77    0   54 1305976.66 1074526.77  17.7%     -    0s
+     0     0 1080996.57    0   61 1305976.66 1080996.57  17.2%     -    0s
+     0     0 1095369.22    0   56 1305976.66 1095369.22  16.1%     -    0s
+     0     0 1095375.41    0   57 1305976.66 1095375.41  16.1%     -    0s
+     0     0 1095567.96    0   53 1305976.66 1095567.96  16.1%     -    0s
+     0     0 1095570.93    0   53 1305976.66 1095570.93  16.1%     -    0s
+     0     0 1095574.65    0   53 1305976.66 1095574.65  16.1%     -    0s
+     0     0 1095575.23    0   53 1305976.66 1095575.23  16.1%     -    0s
+     0     0 1095575.23    0   53 1305976.66 1095575.23  16.1%     -    0s
+     0     2 1095575.23    0   53 1305976.66 1095575.23  16.1%     -    0s
+H   35    55                    1185850.1301 1099708.67  7.26%  11.9    1s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Implied bound: 7
+  MIR: 3
+  Flow cover: 6
+  RLT: 52
+
+Explored 59 nodes (1696 simplex iterations) in 1.28 seconds (0.31 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 4: 1.18585e+06 1.30598e+06 1.34825e+06 1.42853e+06 
+
+Optimal solution found (tolerance 1.00e-01)
+Warning: max constraint violation (9.9457e-04) exceeds tolerance
+Warning: max general constraint violation (9.9457e-04) exceeds tolerance
+Best objective 1.185850130135e+06, best bound 1.101205692928e+06, gap 7.1379%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.4444 radians
+sin(theta) = 0.4299, cos(theta) = 0.9029, cot(theta) = 2.1000
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+
+情景 8 的结果：
+港口 1:
+  加油策略: 不加油
+    低硫燃油消耗: 2.821556
+    高硫燃油消耗: 0.000000
+  从港口 1 到港口 2 的绕行策略: 直接航线
+  从港口 1 到港口 2 的 ECA 航速: 16.266403 节
+  从港口 1 到港口 2 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 8.000000 小时
+  实际到达时间: 8.000000 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 0.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 8.000000 小时
+港口 2:
+  加油策略: 加油
+    低硫燃油消耗: 1.247866
+    高硫燃油消耗: 7.896629
+  从港口 2 到港口 3 的绕行策略: 绕行
+  从港口 2 到港口 3 的 ECA 航速: 14.569614 节
+  从港口 2 到港口 3 的非 ECA 航速: 15.157215 节
+  加油量（低硫燃油）: 9.821556 吨
+  加油量（高硫燃油）: 7.000000 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 22.902355 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 24.000000 小时
+  等待时间: 1.097645 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 22.902355 小时
+港口 3:
+  加油策略: 加油
+    低硫燃油消耗: 3.140458
+    高硫燃油消耗: 0.000000
+  从港口 3 到港口 4 的绕行策略: 直接航线
+  从港口 3 到港口 4 的 ECA 航速: 12.729333 节
+  从港口 3 到港口 4 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 1.247866 吨
+  加油量（高硫燃油）: 0.896629 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 55.398737 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 62.000000 小时
+  等待时间: 6.601263 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 55.398737 小时
+港口 4:
+  加油策略: 不加油
+    低硫燃油消耗: 3.351239
+    高硫燃油消耗: 0.000000
+  从港口 4 到港口 5 的绕行策略: 直接航线
+  从港口 4 到港口 5 的 ECA 航速: 12.712512 节
+  从港口 4 到港口 5 的非 ECA 航速: 23.481489 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 77.002222 小时
+  0.0, 0.0, 1.0, 0.0
+  进港时间: 94.000000 小时
+  等待时间: 16.997778 小时
+  选择的时间窗口: 3
+  当日到达时间（15d）: 77.002222 小时
+港口 5:
+  加油策略: 不加油
+    低硫燃油消耗: 0.508303
+    高硫燃油消耗: 0.000000
+  从港口 5 到港口 6 的绕行策略: 直接航线
+  从港口 5 到港口 6 的 ECA 航速: 13.014807 节
+  从港口 5 到港口 6 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 109.890908 小时
+  0.0, 0.0, 0.0, 1.0
+  进港时间: 130.560208 小时
+  等待时间: 20.669301 小时
+  选择的时间窗口: 4
+  当日到达时间（15d）: 109.890908 小时
+港口 6:
+  加油策略: 不加油
+    低硫燃油消耗: 0.000000
+    高硫燃油消耗: 0.000000
+  没有后续航段。
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 140.000000 小时
+  0.0, 0.0, 1.0, 0.0
+  进港时间: 140.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 3
+  当日到达时间（15d）: 140.000000 小时
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0xc84b3429
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.03s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984200.101    0   56          - 984200.101      -     -    0s
+     0     0 1059932.93    0   54          - 1059932.93      -     -    0s
+     0     0 1059932.93    0   54          - 1059932.93      -     -    0s
+     0     0 1059932.93    0   54          - 1059932.93      -     -    0s
+     0     0 1060344.22    0   54          - 1060344.22      -     -    0s
+     0     0 1073306.62    0   68          - 1073306.62      -     -    0s
+H    0     0                    1348249.3817 1073306.62  20.4%     -    0s
+     0     0 1073306.62    0   50 1348249.38 1073306.62  20.4%     -    0s
+H    0     0                    1305997.4650 1073306.62  17.8%     -    0s
+     0     0 1073306.62    0   53 1305997.47 1073306.62  17.8%     -    0s
+     0     0 1074526.77    0   54 1305997.47 1074526.77  17.7%     -    0s
+     0     0 1080996.57    0   61 1305997.47 1080996.57  17.2%     -    0s
+     0     0 1095369.22    0   56 1305997.47 1095369.22  16.1%     -    0s
+     0     0 1095375.41    0   57 1305997.47 1095375.41  16.1%     -    0s
+     0     0 1095567.96    0   53 1305997.47 1095567.96  16.1%     -    0s
+     0     0 1095570.93    0   53 1305997.47 1095570.93  16.1%     -    0s
+     0     0 1095574.65    0   53 1305997.47 1095574.65  16.1%     -    0s
+     0     0 1095575.23    0   53 1305997.47 1095575.23  16.1%     -    0s
+     0     0 1095575.23    0   53 1305997.47 1095575.23  16.1%     -    0s
+     0     2 1095575.23    0   53 1305997.47 1095575.23  16.1%     -    0s
+H   35    55                    1185873.1031 1099708.67  7.27%  12.0    1s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Implied bound: 7
+  MIR: 3
+  Flow cover: 6
+  RLT: 52
+
+Explored 59 nodes (1678 simplex iterations) in 1.23 seconds (0.31 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 4: 1.18587e+06 1.306e+06 1.34825e+06 1.42853e+06 
+
+Optimal solution found (tolerance 1.00e-01)
+Warning: max constraint violation (8.5043e-04) exceeds tolerance
+Warning: max general constraint violation (8.5043e-04) exceeds tolerance
+Best objective 1.185873103145e+06, best bound 1.101205692928e+06, gap 7.1397%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.4444 radians
+sin(theta) = 0.4299, cos(theta) = 0.9029, cot(theta) = 2.1000
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+
+情景 9 的结果：
+港口 1:
+  加油策略: 不加油
+    低硫燃油消耗: 2.612032
+    高硫燃油消耗: 0.000000
+  从港口 1 到港口 2 的绕行策略: 直接航线
+  从港口 1 到港口 2 的 ECA 航速: 15.642828 节
+  从港口 1 到港口 2 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 8.000000 小时
+  实际到达时间: 8.000000 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 0.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 8.000000 小时
+港口 2:
+  加油策略: 加油
+    低硫燃油消耗: 0.760988
+    高硫燃油消耗: 6.982039
+  从港口 2 到港口 3 的绕行策略: 绕行
+  从港口 2 到港口 3 的 ECA 航速: 11.499574 节
+  从港口 2 到港口 3 的非 ECA 航速: 14.226022 节
+  加油量（低硫燃油）: 9.611201 吨
+  加油量（高硫燃油）: 6.982039 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 23.149601 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 24.000000 小时
+  等待时间: 0.850399 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 23.149601 小时
+港口 3:
+  加油策略: 不加油
+    低硫燃油消耗: 3.123485
+    高硫燃油消耗: 0.000000
+  从港口 3 到港口 4 的绕行策略: 直接航线
+  从港口 3 到港口 4 的 ECA 航速: 12.698486 节
+  从港口 3 到港口 4 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 57.777936 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 62.000000 小时
+  等待时间: 4.222064 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 57.777936 小时
+港口 4:
+  加油策略: 不加油
+    低硫燃油消耗: 2.731335
+    高硫燃油消耗: 0.000000
+  从港口 4 到港口 5 的绕行策略: 直接航线
+  从港口 4 到港口 5 的 ECA 航速: 11.505284 节
+  从港口 4 到港口 5 的非 ECA 航速: 24.413962 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 77.037896 小时
+  0.0, 0.0, 1.0, 0.0
+  进港时间: 94.000000 小时
+  等待时间: 16.962104 小时
+  选择的时间窗口: 3
+  当日到达时间（15d）: 77.037896 小时
+港口 5:
+  加油策略: 不加油
+    低硫燃油消耗: 0.383360
+    高硫燃油消耗: 0.000000
+  从港口 5 到港口 6 的绕行策略: 直接航线
+  从港口 5 到港口 6 的 ECA 航速: 11.394647 节
+  从港口 5 到港口 6 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 111.542684 小时
+  0.0, 0.0, 0.0, 1.0
+  进港时间: 130.246116 小时
+  等待时间: 18.703433 小时
+  选择的时间窗口: 4
+  当日到达时间（15d）: 111.542684 小时
+港口 6:
+  加油策略: 不加油
+    低硫燃油消耗: 0.000000
+    高硫燃油消耗: 0.000000
+  没有后续航段。
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 140.000000 小时
+  0.0, 0.0, 1.0, 0.0
+  进港时间: 140.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 3
+  当日到达时间（15d）: 140.000000 小时
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0x873c522d
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.04s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.01 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984207.518    0   56          - 984207.518      -     -    0s
+     0     0 1059926.80    0   54          - 1059926.80      -     -    0s
+     0     0 1059926.80    0   54          - 1059926.80      -     -    0s
+     0     0 1059926.80    0   54          - 1059926.80      -     -    0s
+     0     0 1060339.45    0   54          - 1060339.45      -     -    0s
+     0     0 1073321.23    0   68          - 1073321.23      -     -    0s
+H    0     0                    1348311.9170 1073321.23  20.4%     -    0s
+     0     0 1073321.23    0   50 1348311.92 1073321.23  20.4%     -    0s
+H    0     0                    1306072.4843 1073321.23  17.8%     -    0s
+     0     0 1073321.23    0   53 1306072.48 1073321.23  17.8%     -    0s
+     0     0 1074536.07    0   54 1306072.48 1074536.07  17.7%     -    0s
+     0     0 1081006.70    0   61 1306072.48 1081006.70  17.2%     -    0s
+     0     0 1095379.13    0   56 1306072.48 1095379.13  16.1%     -    0s
+     0     0 1095384.56    0   57 1306072.48 1095384.56  16.1%     -    0s
+     0     0 1095578.33    0   53 1306072.48 1095578.33  16.1%     -    0s
+     0     0 1095581.29    0   49 1306072.48 1095581.29  16.1%     -    0s
+     0     0 1095581.29    0   53 1306072.48 1095581.29  16.1%     -    0s
+H    0     0                    1259180.6356 1095581.29  13.0%     -    0s
+     0     0 1095583.59    0   53 1259180.64 1095583.59  13.0%     -    0s
+     0     0 1095586.37    0   53 1259180.64 1095586.37  13.0%     -    0s
+     0     0 1095586.39    0   53 1259180.64 1095586.39  13.0%     -    0s
+     0     0 1095586.39    0   53 1259180.64 1095586.39  13.0%     -    0s
+     0     2 1095586.39    0   53 1259180.64 1095586.39  13.0%     -    0s
+H   35    55                    1144975.5919 1099676.20  3.96%  12.7    1s
+H   49    55                    1144958.7640 1101220.50  3.82%  16.1    1s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Implied bound: 7
+  MIR: 2
+  Flow cover: 6
+  RLT: 54
+
+Explored 59 nodes (1790 simplex iterations) in 1.26 seconds (0.31 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 6: 1.14496e+06 1.14498e+06 1.25918e+06 ... 1.4286e+06
+
+Optimal solution found (tolerance 1.00e-01)
+Warning: max constraint violation (2.2671e-04) exceeds tolerance
+Warning: max general constraint violation (2.2671e-04) exceeds tolerance
+Best objective 1.144958763976e+06, best bound 1.101220498915e+06, gap 3.8201%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+
+情景 10 的结果：
+港口 1:
+  加油策略: 不加油
+    低硫燃油消耗: 2.821556
+    高硫燃油消耗: 0.000000
+  从港口 1 到港口 2 的绕行策略: 直接航线
+  从港口 1 到港口 2 的 ECA 航速: 16.266403 节
+  从港口 1 到港口 2 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 8.000000 小时
+  实际到达时间: 8.000000 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 0.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 8.000000 小时
+港口 2:
+  加油策略: 加油
+    低硫燃油消耗: 5.411853
+    高硫燃油消耗: 3.539930
+  从港口 2 到港口 3 的绕行策略: 绕行
+  从港口 2 到港口 3 的 ECA 航速: 15.130843 节
+  从港口 2 到港口 3 的非 ECA 航速: 15.157215 节
+  加油量（低硫燃油）: 9.821556 吨
+  加油量（高硫燃油）: 3.539930 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 22.902355 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 24.000000 小时
+  等待时间: 1.097645 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 22.902355 小时
+港口 3:
+  加油策略: 加油
+    低硫燃油消耗: 3.171682
+    高硫燃油消耗: 0.000000
+  从港口 3 到港口 4 的绕行策略: 直接航线
+  从港口 3 到港口 4 的 ECA 航速: 12.782500 节
+  从港口 3 到港口 4 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 5.411853 吨
+  加油量（高硫燃油）: 0.000000 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 55.003020 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 62.000000 小时
+  等待时间: 6.996980 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 55.003020 小时
+港口 4:
+  加油策略: 不加油
+    低硫燃油消耗: 3.347415
+    高硫燃油消耗: 0.000000
+  从港口 4 到港口 5 的绕行策略: 直接航线
+  从港口 4 到港口 5 的 ECA 航速: 12.706474 节
+  从港口 4 到港口 5 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 76.941138 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 84.000000 小时
+  等待时间: 7.058862 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 76.941138 小时
+港口 5:
+  加油策略: 不加油
+    低硫燃油消耗: 0.480902
+    高硫燃油消耗: 0.000000
+  从港口 5 到港口 6 的绕行策略: 直接航线
+  从港口 5 到港口 6 的 ECA 航速: 12.706474 节
+  从港口 5 到港口 6 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 99.870664 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 101.982272 小时
+  等待时间: 2.111608 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 99.870664 小时
+港口 6:
+  加油策略: 不加油
+    低硫燃油消耗: 0.000000
+    高硫燃油消耗: 0.000000
+  没有后续航段。
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 110.000000 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 110.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 110.000000 小时
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0x88b7dc78
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.04s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984207.518    0   56          - 984207.518      -     -    0s
+     0     0 1059924.08    0   54          - 1059924.08      -     -    0s
+     0     0 1059924.08    0   54          - 1059924.08      -     -    0s
+     0     0 1059924.08    0   54          - 1059924.08      -     -    0s
+     0     0 1060336.73    0   54          - 1060336.73      -     -    0s
+     0     0 1073327.60    0   68          - 1073327.60      -     -    0s
+H    0     0                    1348311.9170 1073327.60  20.4%     -    0s
+     0     0 1073327.60    0   50 1348311.92 1073327.60  20.4%     -    0s
+H    0     0                    1306089.1295 1073327.60  17.8%     -    0s
+     0     0 1073327.60    0   53 1306089.13 1073327.60  17.8%     -    0s
+     0     0 1074536.07    0   54 1306089.13 1074536.07  17.7%     -    0s
+     0     0 1081006.70    0   61 1306089.13 1081006.70  17.2%     -    0s
+     0     0 1095379.13    0   56 1306089.13 1095379.13  16.1%     -    0s
+     0     0 1095384.56    0   57 1306089.13 1095384.56  16.1%     -    0s
+     0     0 1095578.33    0   53 1306089.13 1095578.33  16.1%     -    0s
+     0     0 1095581.29    0   49 1306089.13 1095581.29  16.1%     -    0s
+     0     0 1095581.29    0   53 1306089.13 1095581.29  16.1%     -    0s
+H    0     0                    1259186.8239 1095581.29  13.0%     -    0s
+     0     0 1095583.59    0   53 1259186.82 1095583.59  13.0%     -    0s
+     0     0 1095586.37    0   53 1259186.82 1095586.37  13.0%     -    0s
+     0     0 1095586.39    0   53 1259186.82 1095586.39  13.0%     -    0s
+     0     0 1095586.39    0   53 1259186.82 1095586.39  13.0%     -    0s
+     0     2 1095586.39    0   53 1259186.82 1095586.39  13.0%     -    0s
+H   35    55                    1144999.1070 1099676.20  3.96%  12.8    1s
+H   49    55                    1144982.7854 1101220.50  3.82%  16.7    1s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Implied bound: 7
+  MIR: 2
+  Flow cover: 6
+  RLT: 54
+
+Explored 59 nodes (1818 simplex iterations) in 1.22 seconds (0.31 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 6: 1.14498e+06 1.145e+06 1.25919e+06 ... 1.4286e+06
+
+Optimal solution found (tolerance 1.00e-01)
+Warning: max constraint violation (9.6989e-04) exceeds tolerance
+Warning: max general constraint violation (9.6989e-04) exceeds tolerance
+Best objective 1.144982785354e+06, best bound 1.101220498915e+06, gap 3.8221%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+
+情景 11 的结果：
+港口 1:
+  加油策略: 不加油
+    低硫燃油消耗: 2.821556
+    高硫燃油消耗: 0.000000
+  从港口 1 到港口 2 的绕行策略: 直接航线
+  从港口 1 到港口 2 的 ECA 航速: 16.266403 节
+  从港口 1 到港口 2 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 8.000000 小时
+  实际到达时间: 8.000000 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 0.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 8.000000 小时
+港口 2:
+  加油策略: 加油
+    低硫燃油消耗: 5.067944
+    高硫燃油消耗: 3.539930
+  从港口 2 到港口 3 的绕行策略: 绕行
+  从港口 2 到港口 3 的 ECA 航速: 14.624998 节
+  从港口 2 到港口 3 的非 ECA 航速: 15.157215 节
+  加油量（低硫燃油）: 9.821556 吨
+  加油量（高硫燃油）: 3.539930 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 22.902355 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 24.000000 小时
+  等待时间: 1.097645 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 22.902355 小时
+港口 3:
+  加油策略: 加油
+    低硫燃油消耗: 3.171683
+    高硫燃油消耗: 0.000000
+  从港口 3 到港口 4 的绕行策略: 直接航线
+  从港口 3 到港口 4 的 ECA 航速: 12.782501 节
+  从港口 3 到港口 4 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 5.067944 吨
+  加油量（高硫燃油）: 0.000000 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 55.517260 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 62.000000 小时
+  等待时间: 6.482740 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 55.517260 小时
+港口 4:
+  加油策略: 不加油
+    低硫燃油消耗: 3.347415
+    高硫燃油消耗: 0.000000
+  从港口 4 到港口 5 的绕行策略: 直接航线
+  从港口 4 到港口 5 的 ECA 航速: 12.706474 节
+  从港口 4 到港口 5 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 76.941137 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 84.000000 小时
+  等待时间: 7.058863 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 76.941137 小时
+港口 5:
+  加油策略: 不加油
+    低硫燃油消耗: 0.480902
+    高硫燃油消耗: 0.000000
+  从港口 5 到港口 6 的绕行策略: 直接航线
+  从港口 5 到港口 6 的 ECA 航速: 12.706474 节
+  从港口 5 到港口 6 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 99.870664 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 101.982272 小时
+  等待时间: 2.111608 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 99.870664 小时
+港口 6:
+  加油策略: 不加油
+    低硫燃油消耗: 0.000000
+    高硫燃油消耗: 0.000000
+  没有后续航段。
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 110.000000 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 110.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 110.000000 小时
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0x58a36fa0
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.04s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984214.934    0   56          - 984214.934      -     -    0s
+     0     0 1059932.93    0   54          - 1059932.93      -     -    0s
+     0     0 1059932.93    0   54          - 1059932.93      -     -    0s
+     0     0 1059932.93    0   54          - 1059932.93      -     -    0s
+     0     0 1060352.37    0   54          - 1060352.37      -     -    0s
+     0     0 1073336.60    0   68          - 1073336.60      -     -    0s
+H    0     0                    1348374.4522 1073336.60  20.4%     -    0s
+     0     0 1073336.60    0   50 1348374.45 1073336.60  20.4%     -    0s
+H    0     0                    1306143.3422 1073336.60  17.8%     -    0s
+     0     0 1073336.60    0   53 1306143.34 1073336.60  17.8%     -    0s
+     0     0 1074549.33    0   54 1306143.34 1074549.33  17.7%     -    0s
+     0     0 1081019.20    0   61 1306143.34 1081019.20  17.2%     -    0s
+     0     0 1095392.03    0   56 1306143.34 1095392.03  16.1%     -    0s
+     0     0 1095399.02    0   57 1306143.34 1095399.02  16.1%     -    0s
+     0     0 1095591.44    0   53 1306143.34 1095591.44  16.1%     -    0s
+     0     0 1095594.41    0   53 1306143.34 1095594.41  16.1%     -    0s
+H    0     0                    1259250.9774 1095594.41  13.0%     -    0s
+     0     0 1095598.21    0   53 1259250.98 1095598.21  13.0%     -    0s
+     0     0 1095598.68    0   53 1259250.98 1095598.68  13.0%     -    0s
+     0     0 1095598.68    0   53 1259250.98 1095598.68  13.0%     -    0s
+     0     2 1095598.68    0   53 1259250.98 1095598.68  13.0%     -    0s
+H   35    57                    1144548.7042 1099756.21  3.91%  12.2    1s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Implied bound: 7
+  MIR: 3
+  Flow cover: 6
+  RLT: 51
+
+Explored 59 nodes (1734 simplex iterations) in 1.30 seconds (0.30 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 5: 1.14455e+06 1.25925e+06 1.30614e+06 ... 1.42866e+06
+
+Optimal solution found (tolerance 1.00e-01)
+Warning: max constraint violation (9.1108e-04) exceeds tolerance
+Warning: max general constraint violation (9.1108e-04) exceeds tolerance
+Best objective 1.144548704236e+06, best bound 1.101255571683e+06, gap 3.7826%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.4444 radians
+sin(theta) = 0.4299, cos(theta) = 0.9029, cot(theta) = 2.1000
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+
+情景 12 的结果：
+港口 1:
+  加油策略: 不加油
+    低硫燃油消耗: 2.821556
+    高硫燃油消耗: 0.000000
+  从港口 1 到港口 2 的绕行策略: 直接航线
+  从港口 1 到港口 2 的 ECA 航速: 16.266403 节
+  从港口 1 到港口 2 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 8.000000 小时
+  实际到达时间: 8.000000 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 0.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 8.000000 小时
+港口 2:
+  加油策略: 加油
+    低硫燃油消耗: 0.744599
+    高硫燃油消耗: 7.000000
+  从港口 2 到港口 3 的绕行策略: 绕行
+  从港口 2 到港口 3 的 ECA 航速: 11.396877 节
+  从港口 2 到港口 3 的非 ECA 航速: 14.243206 节
+  加油量（低硫燃油）: 9.821556 吨
+  加油量（高硫燃油）: 7.000000 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 22.902355 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 24.000000 小时
+  等待时间: 1.097645 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 22.902355 小时
+港口 3:
+  加油策略: 不加油
+    低硫燃油消耗: 3.126546
+    高硫燃油消耗: 0.000000
+  从港口 3 到港口 4 的绕行策略: 直接航线
+  从港口 3 到港口 4 的 ECA 航速: 12.705537 节
+  从港口 3 到港口 4 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 57.795042 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 62.000000 小时
+  等待时间: 4.204958 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 57.795042 小时
+港口 4:
+  加油策略: 不加油
+    低硫燃油消耗: 2.708240
+    高硫燃油消耗: 0.000000
+  从港口 4 到港口 5 的绕行策略: 直接航线
+  从港口 4 到港口 5 的 ECA 航速: 11.464666 节
+  从港口 4 到港口 5 的非 ECA 航速: 11.406808 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 77.029725 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 84.000000 小时
+  等待时间: 6.970275 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 77.029725 小时
+港口 5:
+  加油策略: 不加油
+    低硫燃油消耗: 0.420615
+    高硫燃油消耗: 0.000000
+  从港口 5 到港口 6 的绕行策略: 直接航线
+  从港口 5 到港口 6 的 ECA 航速: 11.862852 节
+  从港口 5 到港口 6 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 101.576583 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 101.821366 小时
+  等待时间: 0.244783 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 101.576583 小时
+港口 6:
+  加油策略: 不加油
+    低硫燃油消耗: 0.000000
+    高硫燃油消耗: 0.000000
+  没有后续航段。
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 110.000000 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 110.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 110.000000 小时
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0xb4d2462e
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.04s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.01 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984214.934    0   56          - 984214.934      -     -    0s
+     0     0 1059935.65    0   54          - 1059935.65      -     -    0s
+     0     0 1059935.65    0   54          - 1059935.65      -     -    0s
+     0     0 1059935.65    0   54          - 1059935.65      -     -    0s
+     0     0 1060355.09    0   54          - 1060355.09      -     -    0s
+     0     0 1073336.63    0   68          - 1073336.63      -     -    0s
+H    0     0                    1348374.4522 1073336.63  20.4%     -    0s
+     0     0 1073336.63    0   50 1348374.45 1073336.63  20.4%     -    0s
+H    0     0                    1306143.3422 1073336.63  17.8%     -    0s
+     0     0 1073336.63    0   53 1306143.34 1073336.63  17.8%     -    0s
+     0     0 1074549.33    0   54 1306143.34 1074549.33  17.7%     -    0s
+     0     0 1081019.20    0   61 1306143.34 1081019.20  17.2%     -    0s
+     0     0 1095392.03    0   56 1306143.34 1095392.03  16.1%     -    0s
+     0     0 1095399.02    0   57 1306143.34 1095399.02  16.1%     -    0s
+     0     0 1095591.44    0   53 1306143.34 1095591.44  16.1%     -    0s
+     0     0 1095594.41    0   53 1306143.34 1095594.41  16.1%     -    0s
+H    0     0                    1259250.9774 1095594.41  13.0%     -    0s
+     0     0 1095598.21    0   53 1259250.98 1095598.21  13.0%     -    0s
+     0     0 1095598.68    0   53 1259250.98 1095598.68  13.0%     -    0s
+     0     0 1095598.68    0   53 1259250.98 1095598.68  13.0%     -    0s
+     0     2 1095598.68    0   53 1259250.98 1095598.68  13.0%     -    0s
+H   35    57                    1144548.7042 1099756.21  3.91%  12.2    1s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Implied bound: 7
+  MIR: 3
+  Flow cover: 6
+  RLT: 51
+
+Explored 59 nodes (1734 simplex iterations) in 1.19 seconds (0.30 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 5: 1.14455e+06 1.25925e+06 1.30614e+06 ... 1.42866e+06
+
+Optimal solution found (tolerance 1.00e-01)
+Warning: max constraint violation (9.1108e-04) exceeds tolerance
+Warning: max general constraint violation (9.1108e-04) exceeds tolerance
+Best objective 1.144548704236e+06, best bound 1.101255571683e+06, gap 3.7826%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.4444 radians
+sin(theta) = 0.4299, cos(theta) = 0.9029, cot(theta) = 2.1000
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+
+情景 13 的结果：
+港口 1:
+  加油策略: 不加油
+    低硫燃油消耗: 2.821556
+    高硫燃油消耗: 0.000000
+  从港口 1 到港口 2 的绕行策略: 直接航线
+  从港口 1 到港口 2 的 ECA 航速: 16.266403 节
+  从港口 1 到港口 2 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 8.000000 小时
+  实际到达时间: 8.000000 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 0.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 8.000000 小时
+港口 2:
+  加油策略: 加油
+    低硫燃油消耗: 0.744599
+    高硫燃油消耗: 7.000000
+  从港口 2 到港口 3 的绕行策略: 绕行
+  从港口 2 到港口 3 的 ECA 航速: 11.396877 节
+  从港口 2 到港口 3 的非 ECA 航速: 14.243206 节
+  加油量（低硫燃油）: 9.821556 吨
+  加油量（高硫燃油）: 7.000000 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 22.902355 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 24.000000 小时
+  等待时间: 1.097645 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 22.902355 小时
+港口 3:
+  加油策略: 不加油
+    低硫燃油消耗: 3.126546
+    高硫燃油消耗: 0.000000
+  从港口 3 到港口 4 的绕行策略: 直接航线
+  从港口 3 到港口 4 的 ECA 航速: 12.705537 节
+  从港口 3 到港口 4 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 57.795042 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 62.000000 小时
+  等待时间: 4.204958 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 57.795042 小时
+港口 4:
+  加油策略: 不加油
+    低硫燃油消耗: 2.708240
+    高硫燃油消耗: 0.000000
+  从港口 4 到港口 5 的绕行策略: 直接航线
+  从港口 4 到港口 5 的 ECA 航速: 11.464666 节
+  从港口 4 到港口 5 的非 ECA 航速: 11.406808 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 77.029725 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 84.000000 小时
+  等待时间: 6.970275 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 77.029725 小时
+港口 5:
+  加油策略: 不加油
+    低硫燃油消耗: 0.420615
+    高硫燃油消耗: 0.000000
+  从港口 5 到港口 6 的绕行策略: 直接航线
+  从港口 5 到港口 6 的 ECA 航速: 11.862852 节
+  从港口 5 到港口 6 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 101.576583 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 101.821366 小时
+  等待时间: 0.244783 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 101.576583 小时
+港口 6:
+  加油策略: 不加油
+    低硫燃油消耗: 0.000000
+    高硫燃油消耗: 0.000000
+  没有后续航段。
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 110.000000 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 110.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 110.000000 小时
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0x1ed636ab
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.03s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.01 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984214.934    0   56          - 984214.934      -     -    0s
+     0     0 1059947.22    0   54          - 1059947.22      -     -    0s
+     0     0 1059947.22    0   54          - 1059947.22      -     -    0s
+     0     0 1059947.22    0   54          - 1059947.22      -     -    0s
+     0     0 1060366.66    0   54          - 1060366.66      -     -    0s
+     0     0 1073352.60    0   68          - 1073352.60      -     -    0s
+H    0     0                    1348374.4522 1073352.60  20.4%     -    0s
+     0     0 1073352.60    0   50 1348374.45 1073352.60  20.4%     -    0s
+H    0     0                    1306184.9553 1073352.60  17.8%     -    0s
+     0     0 1073352.60    0   53 1306184.96 1073352.60  17.8%     -    0s
+     0     0 1074549.33    0   54 1306184.96 1074549.33  17.7%     -    0s
+     0     0 1081019.20    0   61 1306184.96 1081019.20  17.2%     -    0s
+     0     0 1095392.03    0   56 1306184.96 1095392.03  16.1%     -    0s
+     0     0 1095399.02    0   57 1306184.96 1095399.02  16.1%     -    0s
+     0     0 1095591.44    0   53 1306184.96 1095591.44  16.1%     -    0s
+     0     0 1095594.41    0   53 1306184.96 1095594.41  16.1%     -    0s
+H    0     0                    1259266.4481 1095594.41  13.0%     -    0s
+     0     0 1095598.21    0   53 1259266.45 1095598.21  13.0%     -    0s
+     0     0 1095598.68    0   53 1259266.45 1095598.68  13.0%     -    0s
+     0     0 1095598.68    0   53 1259266.45 1095598.68  13.0%     -    0s
+     0     2 1095598.68    0   53 1259266.45 1095598.68  13.0%     -    0s
+H   35    57                    1144548.7121 1099756.21  3.91%  12.3    1s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Implied bound: 7
+  MIR: 3
+  Flow cover: 6
+  RLT: 51
+
+Explored 59 nodes (1712 simplex iterations) in 1.22 seconds (0.30 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 5: 1.14455e+06 1.25927e+06 1.30618e+06 ... 1.42866e+06
+
+Optimal solution found (tolerance 1.00e-01)
+Warning: max constraint violation (9.1108e-04) exceeds tolerance
+Warning: max general constraint violation (9.1108e-04) exceeds tolerance
+Best objective 1.144548712052e+06, best bound 1.101255571683e+06, gap 3.7826%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.4444 radians
+sin(theta) = 0.4299, cos(theta) = 0.9029, cot(theta) = 2.1000
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+
+情景 14 的结果：
+港口 1:
+  加油策略: 不加油
+    低硫燃油消耗: 2.821556
+    高硫燃油消耗: 0.000000
+  从港口 1 到港口 2 的绕行策略: 直接航线
+  从港口 1 到港口 2 的 ECA 航速: 16.266403 节
+  从港口 1 到港口 2 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 8.000000 小时
+  实际到达时间: 8.000000 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 0.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 8.000000 小时
+港口 2:
+  加油策略: 加油
+    低硫燃油消耗: 0.744599
+    高硫燃油消耗: 7.000000
+  从港口 2 到港口 3 的绕行策略: 绕行
+  从港口 2 到港口 3 的 ECA 航速: 11.396877 节
+  从港口 2 到港口 3 的非 ECA 航速: 14.243206 节
+  加油量（低硫燃油）: 9.821556 吨
+  加油量（高硫燃油）: 7.000000 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 22.902355 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 24.000000 小时
+  等待时间: 1.097645 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 22.902355 小时
+港口 3:
+  加油策略: 不加油
+    低硫燃油消耗: 3.126546
+    高硫燃油消耗: 0.000000
+  从港口 3 到港口 4 的绕行策略: 直接航线
+  从港口 3 到港口 4 的 ECA 航速: 12.705537 节
+  从港口 3 到港口 4 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 57.795042 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 62.000000 小时
+  等待时间: 4.204958 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 57.795042 小时
+港口 4:
+  加油策略: 不加油
+    低硫燃油消耗: 2.708240
+    高硫燃油消耗: 0.000000
+  从港口 4 到港口 5 的绕行策略: 直接航线
+  从港口 4 到港口 5 的 ECA 航速: 11.464658 节
+  从港口 4 到港口 5 的非 ECA 航速: 11.767223 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 77.029725 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 84.000000 小时
+  等待时间: 6.970275 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 77.029725 小时
+港口 5:
+  加油策略: 不加油
+    低硫燃油消耗: 0.420615
+    高硫燃油消耗: 0.000000
+  从港口 5 到港口 6 的绕行策略: 直接航线
+  从港口 5 到港口 6 的 ECA 航速: 11.862852 节
+  从港口 5 到港口 6 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 101.576595 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 101.821366 小时
+  等待时间: 0.244771 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 101.576595 小时
+港口 6:
+  加油策略: 不加油
+    低硫燃油消耗: 0.000000
+    高硫燃油消耗: 0.000000
+  没有后续航段。
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 110.000000 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 110.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 110.000000 小时
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0xfbf9ba24
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.04s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984214.934    0   56          - 984214.934      -     -    0s
+     0     0 1059947.90    0   54          - 1059947.90      -     -    0s
+     0     0 1059947.90    0   54          - 1059947.90      -     -    0s
+     0     0 1059947.90    0   54          - 1059947.90      -     -    0s
+     0     0 1060384.33    0   54          - 1060384.33      -     -    0s
+     0     0 1073363.72    0   68          - 1073363.72      -     -    0s
+H    0     0                    1348436.8719 1073363.72  20.4%     -    0s
+     0     0 1073363.72    0   50 1348436.87 1073363.72  20.4%     -    0s
+H    0     0                    1306195.3586 1073363.72  17.8%     -    0s
+     0     0 1073363.72    0   53 1306195.36 1073363.72  17.8%     -    0s
+     0     0 1074561.48    0   54 1306195.36 1074561.48  17.7%     -    0s
+     0     0 1081037.86    0   60 1306195.36 1081037.86  17.2%     -    0s
+     0     0 1095407.30    0   56 1306195.36 1095407.30  16.1%     -    0s
+     0     0 1095415.61    0   56 1306195.36 1095415.61  16.1%     -    0s
+     0     0 1095603.02    0   53 1306195.36 1095603.02  16.1%     -    0s
+     0     0 1095609.76    0   53 1306195.36 1095609.76  16.1%     -    0s
+H    0     0                    1259314.7747 1095609.76  13.0%     -    0s
+     0     0 1095610.32    0   53 1259314.77 1095610.32  13.0%     -    0s
+     0     0 1095610.40    0   53 1259314.77 1095610.40  13.0%     -    0s
+     0     0 1095610.40    0   53 1259314.77 1095610.40  13.0%     -    0s
+     0     2 1095610.40    0   53 1259314.77 1095610.40  13.0%     -    0s
+H   35    57                    1145230.3240 1099821.59  3.97%  12.3    1s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Implied bound: 7
+  MIR: 3
+  Flow cover: 3
+  RLT: 48
+
+Explored 59 nodes (1602 simplex iterations) in 1.35 seconds (0.30 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 5: 1.14523e+06 1.25931e+06 1.3062e+06 ... 1.42872e+06
+
+Optimal solution found (tolerance 1.00e-01)
+Warning: max constraint violation (1.6569e-04) exceeds tolerance
+Warning: max general constraint violation (1.6569e-04) exceeds tolerance
+Best objective 1.145230324037e+06, best bound 1.101317108215e+06, gap 3.8344%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+
+情景 15 的结果：
+港口 1:
+  加油策略: 不加油
+    低硫燃油消耗: 2.821556
+    高硫燃油消耗: 0.000000
+  从港口 1 到港口 2 的绕行策略: 直接航线
+  从港口 1 到港口 2 的 ECA 航速: 16.266403 节
+  从港口 1 到港口 2 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 8.000000 小时
+  实际到达时间: 8.000000 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 0.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 8.000000 小时
+港口 2:
+  加油策略: 加油
+    低硫燃油消耗: 4.568038
+    高硫燃油消耗: 3.569189
+  从港口 2 到港口 3 的绕行策略: 绕行
+  从港口 2 到港口 3 的 ECA 航速: 13.947222 节
+  从港口 2 到港口 3 的非 ECA 航速: 15.213514 节
+  加油量（低硫燃油）: 9.821556 吨
+  加油量（高硫燃油）: 3.569189 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 22.902355 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 24.000000 小时
+  等待时间: 1.097645 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 22.902355 小时
+港口 3:
+  加油策略: 加油
+    低硫燃油消耗: 3.154657
+    高硫燃油消耗: 0.000000
+  从港口 3 到港口 4 的绕行策略: 直接航线
+  从港口 3 到港口 4 的 ECA 航速: 12.753455 节
+  从港口 3 到港口 4 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 4.568038 吨
+  加油量（高硫燃油）: 0.000000 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 56.230385 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 62.000000 小时
+  等待时间: 5.769615 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 56.230385 小时
+港口 4:
+  加油策略: 不加油
+    低硫燃油消耗: 3.364441
+    高硫燃油消耗: 0.000000
+  从港口 4 到港口 5 的绕行策略: 直接航线
+  从港口 4 到港口 5 的 ECA 航速: 12.733402 节
+  从港口 4 到港口 5 的非 ECA 航速: 18.496421 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 76.974444 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 84.000000 小时
+  等待时间: 7.025556 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 76.974444 小时
+港口 5:
+  加油策略: 不加油
+    低硫燃油消耗: 0.480902
+    高硫燃油消耗: 0.000000
+  从港口 5 到港口 6 的绕行策略: 直接航线
+  从港口 5 到港口 6 的 ECA 航速: 12.706474 节
+  从港口 5 到港口 6 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 99.837357 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 101.982272 小时
+  等待时间: 2.144915 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 99.837357 小时
+港口 6:
+  加油策略: 不加油
+    低硫燃油消耗: 0.000000
+    高硫燃油消耗: 0.000000
+  没有后续航段。
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 110.000000 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 110.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 110.000000 小时
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0xfe658cca
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.04s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984214.934    0   56          - 984214.934      -     -    0s
+     0     0 1059947.90    0   54          - 1059947.90      -     -    0s
+     0     0 1059947.90    0   54          - 1059947.90      -     -    0s
+     0     0 1059947.90    0   54          - 1059947.90      -     -    0s
+     0     0 1060384.33    0   54          - 1060384.33      -     -    0s
+     0     0 1073366.95    0   68          - 1073366.95      -     -    0s
+H    0     0                    1348436.8719 1073366.95  20.4%     -    0s
+     0     0 1073366.95    0   50 1348436.87 1073366.95  20.4%     -    0s
+H    0     0                    1306203.6812 1073366.95  17.8%     -    0s
+     0     0 1073366.95    0   53 1306203.68 1073366.95  17.8%     -    0s
+     0     0 1074561.48    0   54 1306203.68 1074561.48  17.7%     -    0s
+     0     0 1081037.86    0   60 1306203.68 1081037.86  17.2%     -    0s
+     0     0 1095407.30    0   56 1306203.68 1095407.30  16.1%     -    0s
+     0     0 1095415.61    0   56 1306203.68 1095415.61  16.1%     -    0s
+     0     0 1095603.02    0   53 1306203.68 1095603.02  16.1%     -    0s
+     0     0 1095609.76    0   53 1306203.68 1095609.76  16.1%     -    0s
+H    0     0                    1259317.8688 1095609.76  13.0%     -    0s
+     0     0 1095610.32    0   53 1259317.87 1095610.32  13.0%     -    0s
+     0     0 1095610.40    0   53 1259317.87 1095610.40  13.0%     -    0s
+     0     0 1095610.40    0   53 1259317.87 1095610.40  13.0%     -    0s
+     0     2 1095610.40    0   53 1259317.87 1095610.40  13.0%     -    0s
+H   35    57                    1145239.1677 1099821.59  3.97%  12.2    1s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Implied bound: 7
+  MIR: 3
+  Flow cover: 3
+  RLT: 48
+
+Explored 59 nodes (1595 simplex iterations) in 1.24 seconds (0.30 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 5: 1.14524e+06 1.25932e+06 1.3062e+06 ... 1.42872e+06
+
+Optimal solution found (tolerance 1.00e-01)
+Warning: max constraint violation (9.8478e-04) exceeds tolerance
+Warning: max general constraint violation (9.8478e-04) exceeds tolerance
+Best objective 1.145239167729e+06, best bound 1.101317108215e+06, gap 3.8352%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+
+情景 16 的结果：
+港口 1:
+  加油策略: 不加油
+    低硫燃油消耗: 2.821556
+    高硫燃油消耗: 0.000000
+  从港口 1 到港口 2 的绕行策略: 直接航线
+  从港口 1 到港口 2 的 ECA 航速: 16.266403 节
+  从港口 1 到港口 2 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 8.000000 小时
+  实际到达时间: 8.000000 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 0.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 8.000000 小时
+港口 2:
+  加油策略: 加油
+    低硫燃油消耗: 4.605111
+    高硫燃油消耗: 3.736749
+  从港口 2 到港口 3 的绕行策略: 绕行
+  从港口 2 到港口 3 的 ECA 航速: 13.995321 节
+  从港口 2 到港口 3 的非 ECA 航速: 15.544149 节
+  加油量（低硫燃油）: 9.821556 吨
+  加油量（高硫燃油）: 3.736749 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 22.902355 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 24.000000 小时
+  等待时间: 1.097645 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 22.902355 小时
+港口 3:
+  加油策略: 加油
+    低硫燃油消耗: 3.158033
+    高硫燃油消耗: 0.000000
+  从港口 3 到港口 4 的绕行策略: 直接航线
+  从港口 3 到港口 4 的 ECA 航速: 12.759204 节
+  从港口 3 到港口 4 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 4.605111 吨
+  加油量（高硫燃油）: 0.000000 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 55.978104 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 62.000000 小时
+  等待时间: 6.021896 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 55.978104 小时
+港口 4:
+  加油策略: 不加油
+    低硫燃油消耗: 3.361065
+    高硫燃油消耗: 0.000000
+  从港口 4 到港口 5 的绕行策略: 直接航线
+  从港口 4 到港口 5 的 ECA 航速: 12.728054 节
+  从港口 4 到港口 5 的非 ECA 航速: 11.976576 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 76.967840 小时
+  0.0, 1.0, 0.0, 0.0
+  进港时间: 84.000000 小时
+  等待时间: 7.032160 小时
+  选择的时间窗口: 2
+  当日到达时间（15d）: 76.967840 小时
+港口 5:
+  加油策略: 不加油
+    低硫燃油消耗: 0.480902
+    高硫燃油消耗: 0.000000
+  从港口 5 到港口 6 的绕行策略: 直接航线
+  从港口 5 到港口 6 的 ECA 航速: 12.706474 节
+  从港口 5 到港口 6 的非 ECA 航速: 10.000000 节
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 99.843962 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 101.982272 小时
+  等待时间: 2.138310 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 99.843962 小时
+港口 6:
+  加油策略: 不加油
+    低硫燃油消耗: 0.000000
+    高硫燃油消耗: 0.000000
+  没有后续航段。
+  加油量（低硫燃油）: 0.00 吨
+  加油量（高硫燃油）: 0.00 吨
+  ETA（预计到达时间）: 168.000000 小时
+  实际到达时间: 110.000000 小时
+  1.0, 0.0, 0.0, 0.0
+  进港时间: 110.000000 小时
+  等待时间: 0.000000 小时
+  选择的时间窗口: 1
+  当日到达时间（15d）: 110.000000 小时
+Set parameter NonConvex to value 2
+Set parameter MIPGap to value 0.1
+Set parameter Threads to value 28
+Set parameter IntFeasTol to value 1e-08
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (win64 - Windows Server 2019.0 (17763.2))
+
+CPU model: Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 28 physical cores, 56 logical processors, using up to 28 threads
+
+Optimize a model with 310 rows, 319 columns and 633 nonzeros
+Model fingerprint: 0x493ec13a
+Model has 77 quadratic constraints
+Model has 30 general constraints
+Variable types: 248 continuous, 71 integer (35 binary)
+Coefficient statistics:
+  Matrix range     [1e-06, 1e+07]
+  QMatrix range    [1e+00, 2e+01]
+  QLMatrix range   [1e+00, 4e+02]
+  Objective range  [3e+02, 4e+05]
+  Bounds range     [1e-02, 2e+02]
+  RHS range        [1e-01, 1e+07]
+  QRHS range       [1e+00, 4e+02]
+  PWLCon x range   [1e-01, 1e+00]
+  PWLCon y range   [1e-01, 9e+00]
+Warning: Model contains large matrix coefficient range
+         Consider reformulating model or setting NumericFocus parameter
+         to avoid numerical issues.
+Presolve added 0 rows and 4031 columns
+Presolve removed 114 rows and 0 columns
+Presolve time: 0.04s
+Presolved: 477 rows, 4406 columns, 11472 nonzeros
+Presolved model has 54 SOS constraint(s)
+Presolved model has 50 bilinear constraint(s)
+
+Solving non-convex MIQCP
+
+Variable types: 4337 continuous, 69 integer (45 binary)
+
+Root relaxation: objective 9.830320e+05, 201 iterations, 0.01 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 983032.046    0   69          - 983032.046      -     -    0s
+     0     0 983032.046    0   57          - 983032.046      -     -    0s
+     0     0 984222.350    0   56          - 984222.350      -     -    0s
+     0     0 1059956.71    0   55          - 1059956.71      -     -    0s
+     0     0 1059956.71    0   55          - 1059956.71      -     -    0s
+     0     0 1059956.71    0   55          - 1059956.71      -     -    0s
+     0     0 1060393.13    0   55          - 1060393.13      -     -    0s
+     0     0 1073352.94    0   69          - 1073352.94      -     -    0s
+H    0     0                    1348291.3416 1073352.94  20.4%     -    0s
+     0     0 1073352.94    0   50 1348291.34 1073352.94  20.4%     -    0s
+H    0     0                    1306180.9096 1073352.94  17.8%     -    0s
+     0     0 1073352.94    0   53 1306180.91 1073352.94  17.8%     -    0s
+     0     0 1074570.00    0   54 1306180.91 1074570.00  17.7%     -    0s
+     0     0 1081036.12    0   61 1306180.91 1081036.12  17.2%     -    0s
+     0     0 1095409.74    0   57 1306180.91 1095409.74  16.1%     -    0s
+     0     0 1095423.43    0   57 1306180.91 1095423.43  16.1%     -    0s
+     0     0 1095612.55    0   53 1306180.91 1095612.55  16.1%     -    0s
+     0     0 1095615.52    0   53 1306180.91 1095615.52  16.1%     -    0s
+     0     0 1095619.36    0   53 1306180.91 1095619.36  16.1%     -    0s
+     0     0 1095619.36    0   53 1306180.91 1095619.36  16.1%     -    0s
+     0     0 1095619.96    0   53 1306180.91 1095619.96  16.1%     -    0s
+     0     0 1095619.96    0   53 1306180.91 1095619.96  16.1%     -    0s
+     0     2 1095619.96    0   53 1306180.91 1095619.96  16.1%     -    0s
+H   35    55                    1185935.8229 1099838.92  7.26%  15.1    1s
+H   53    55                    1185924.3642 1101328.99  7.13%  16.3    1s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 1
+  Implied bound: 7
+  MIR: 4
+  Flow cover: 5
+  RLT: 53
+
+Explored 59 nodes (1805 simplex iterations) in 1.09 seconds (0.28 work units)
+Thread count was 28 (of 56 available processors)
+
+Solution count 5: 1.18592e+06 1.18594e+06 1.30618e+06 ... 1.42858e+06
+
+Solve interrupted
+Warning: max constraint violation (4.1786e-04) exceeds tolerance
+Warning: max general constraint violation (4.1786e-04) exceeds tolerance
+Best objective 1.185924364202e+06, best bound 1.101328987428e+06, gap 7.1333%
+
+当前的解：
+港口 1 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 2 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 3 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 4 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+港口 5 最优theta值: 0.1069 radians
+sin(theta) = 0.1067, cos(theta) = 0.9943, cot(theta) = 9.3199
+情景 17 求解未找到最优解。
