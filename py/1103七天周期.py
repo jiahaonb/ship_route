@@ -12,7 +12,7 @@ import sys
 csv_pm_path = "data_columns_PM.csv"
 csv_ph_path = "data_columns_PH.csv"
 # 数据输出地址
-file = open("1103 老代码1.txt", "w", encoding="utf-8")
+file = open("1102数据 rho=50.txt", "w", encoding="utf-8")
 
 # 保存原始的sys.stdout
 original_stdout = sys.stdout
@@ -127,7 +127,7 @@ v_max = 25  # 最大航速（节）
 v_min = 10  # 最小航速（节）
 
 # 距离参数
-l_p = {1:193.89, 2:448.95, 3:186.94,4:221.12,5:28.75}  # 从港口 p 到 p+1 的不绕行距离（海里）
+l_p = {1:100.89, 2:420.95, 3:186.94,4:200.12,5:28.75}  # 从港口 p 到 p+1 的不绕行距离（海里）
 d_p = {1:12, 2:12, 3:12,4:12,5:12,6:12}  # 到达ECA边界的垂直距离（海里）
 L_p = {1:78.29, 2:364.47, 3:143.09,4:162.53,5:15.66}  # 从港口 p 到 p+1 的不绕行距离（海里
 
@@ -151,19 +151,28 @@ M_big = 1e7
 p_omega = {omega: 1 / len(Omega) for omega in Omega}  # 假设等概率
 
 # PHA 参数
-rho_t = 10.0  # 对 t_eta 的罚参数
-rho_x = 10.0  # 对 x 的罚参数
-max_iter = 100  # 最大迭代次数
-epsilon_t = 1e-3  # 收敛阈值
-epsilon_x = 1e-10  # 收敛阈值
+rho_t = 2.0  # 对 t_eta 的罚参数
+rho_z = 50.0  # 对 x 的罚参数
+max_iter = 200  # 最大迭代次数
+epsilon_t = 1e-5  # 收敛阈值
+epsilon_x = 1e-3  # 收敛阈值
 
 # 初始化协调变量和拉格朗日乘子
 t_eta_bar = {p: 0.0 for p in P}
-x_bar = {(p, k): 1.0 / len(K) for p in P for k in K}  # 均匀分配初值
+z_bar = {(p, k): 1.0 / len(K) for p in P for k in K}  # 均匀分配初值
+
 
 # 初始化拉格朗日乘子
 mu_t = {omega: {p: 0.0 for p in P} for omega in Omega}
-mu_x = {omega: {(p, k): 0.0 for p in P for k in K} for omega in Omega}
+mu_z = {omega: {(p, k): 0.0 for p in P for k in K} for omega in Omega}
+
+# 新增拉格朗日乘子
+mu_Q_M = {omega: {p: 0.0 for p in P} for omega in Omega}
+mu_Q_H = {omega: {p: 0.0 for p in P} for omega in Omega}
+mu_v_eca = {omega: {p: 0.0 for p in P_} for omega in Omega}
+mu_v_neca = {omega: {p: 0.0 for p in P_} for omega in Omega}
+mu_y = {omega: {p: 0.0 for p in P_} for omega in Omega}
+mu_x_b = {omega: {p: 0.0 for p in P} for omega in Omega}
 
 # 初始化情景变量的存储
 scenario_solutions = {}
@@ -182,7 +191,7 @@ for n in range(max_iter):
     for omega in Omega:
         # 创建 Gurobi 模型 参数如下：
         model = Model(f"TwoStageShipRouting_Scenario_{omega}")
-        model.Params.OutputFlag = 0
+        model.Params.OutputFlag = 1
         model.Params.NonConvex = 2  # 允许非凸二次约束
         model.Params.MIPGap = 0.1
         model.Params.Threads = 28
@@ -243,14 +252,14 @@ for n in range(max_iter):
         cot_theta = model.addVars(P_, vtype=GRB.CONTINUOUS, lb=0, name="cot_theta")
 
         # 一阶段目标函数（加入罚项和拉格朗日乘子）
-        FirstStageCost = quicksum(c[p, k] * x[p, k] * (W_p1[p] + W_p2[p]) for p in P for k in K)
+        FirstStageCost = quicksum(c[p, k] * z[p, k] * (W_p1[p] + W_p2[p]) for p in P for k in K)
 
         penalty_t = quicksum(
             rho_t / 2 * (t_eta[p] - t_eta_bar[p])**2 + mu_t[omega][p] * (t_eta[p] - t_eta_bar[p]) for p in P
         )
 
-        penalty_x = quicksum(
-            rho_x / 2 * (x[p, k] - x_bar[p, k])**2 + mu_x[omega][p, k] * (x[p, k] - x_bar[p, k]) for p in P for k in K
+        penalty_z = quicksum(
+            rho_z / 2 * (z[p, k] - z_bar[p, k])**2 + mu_z[omega][p, k] * (z[p, k] - z_bar[p, k]) for p in P for k in K
         )
 
 
@@ -266,11 +275,18 @@ for n in range(max_iter):
                 for p in P)
         )
 
-        # 总目标函数
-        model.setObjective(
-            FirstStageCost + SecondStageCost + penalty_t + penalty_x ,
-            GRB.MINIMIZE
-        )
+        if n == 0:
+            # 总目标函数
+            model.setObjective(
+                FirstStageCost + SecondStageCost ,
+                GRB.MINIMIZE
+            )
+        else:
+            # 总目标函数
+            model.setObjective(
+                FirstStageCost + SecondStageCost + penalty_t + penalty_z,
+                GRB.MINIMIZE
+            )
 
         # 一阶段约束
         # 固定初始出发时间
@@ -504,8 +520,8 @@ for n in range(max_iter):
                 'x': {(p, k): x[p, k].X for p in P for k in K},
                 'z': {(p, k): z[p, k].X for p in P for k in K},
                 'mu_t': mu_t[omega].copy(),
-                'mu_x': mu_x[omega].copy(),
-                'obj': model.ObjVal,
+                'mu_z': mu_z[omega].copy(),
+                'obj': model.ObjVal, # 这个就是set_O
                 # 存储二阶段变量以便输出
                 't_arr': {p: t_arr[p].X for p in P},
                 't_arr_mod': {p: t_arr_mod[p].X if p !=1 else t_eta_mod[p].X for p in P},
@@ -518,7 +534,6 @@ for n in range(max_iter):
                 't_stay': {p: t_stay[p].X for p in P},
                 'v_eca': {p: v_eca[p].X if p in P_ else None for p in P},
                 'v_neca': {p: v_neca[p].X if p in P_ else None for p in P},
-                'l_ne': {p: l_ne[p].X if p in P_ else None for p in P},
                 'y': {p: y[p].X if p in P_ else None for p in P},
                 'x_b': {p: x_b[p].X for p in P},
                 'Q_M': {p: Q_M[p].X for p in P},
@@ -529,7 +544,13 @@ for n in range(max_iter):
                 'q_H_dep': {p: q_H_dep[p].X for p in P},
                 'R_M': {p: R_M[p].X if p in P_ else 0.0 for p in P},
                 'R_H': {p: R_H[p].X if p in P_ else 0.0 for p in P},
-
+                # 新增拉格朗日乘子
+                'mu_Q_M': mu_Q_M[omega].copy(),
+                'mu_Q_H': mu_Q_H[omega].copy(),
+                'mu_v_eca': mu_v_eca[omega].copy(),
+                'mu_v_neca': mu_v_neca[omega].copy(),
+                'mu_y': mu_y[omega].copy(),
+                'mu_x_b': mu_x_b[omega].copy(),
             }
             scenario_objs.append(model.ObjVal)
 
@@ -547,12 +568,8 @@ for n in range(max_iter):
                     detour_strategy = '绕行' if scenario_solutions[omega]['y'][p] > 0.5 else '直接航线'
                     print(f"  从港口 {p} 到港口 {p+1} 的绕行策略: {detour_strategy}")
                     # 最优速度
-                    if abs(scenario_solutions[omega]['y'][p]-1) < 1e-10:
-                        print(f"    从港口 {p} 到港口 {p + 1} 的 ECA 航速: {scenario_solutions[omega]['v_eca'][p]:.2f}")
-                        print(
-                            f"    从港口 {p} 到港口 {p + 1} 的非 ECA 航速: {scenario_solutions[omega]['v_neca'][p]:.2f}")
-                    else:
-                        print(f"    从港口 {p} 到港口 {p + 1} 的 ECA 航速: {scenario_solutions[omega]['v_eca'][p]:.2f}")
+                    print(f"  从港口 {p} 到港口 {p+1} 的 ECA 航速: {scenario_solutions[omega]['v_eca'][p]:.6f} 节")
+                    print(f"  从港口 {p} 到港口 {p+1} 的非 ECA 航速: {scenario_solutions[omega]['v_neca'][p]:.6f} 节")
                 else:
                     print(f"  没有后续航段。")
                 # 加油量
@@ -588,13 +605,30 @@ for n in range(max_iter):
             print(f"情景 {omega} 求解未找到最优解。")
             break
 
+    # 计算完成所有的情景，开始迭代处理
+    if n == 0:
+        # 更新协调变量
+        for p in P:
+            t_eta_bar[p] = sum(p_omega[omega] * scenario_solutions[omega]['t_eta'][p] for omega in Omega)
+        for p in P:
+            for k in K:
+                z_bar[p, k] = sum(p_omega[omega] * scenario_solutions[omega]['z'][p, k] for omega in Omega)
+
+        # 更新拉格朗日乘子
+        for omega in Omega:
+            for p in P:
+                mu_t[omega][p] += rho_t * (scenario_solutions[omega]['t_eta'][p] - t_eta_bar[p])
+            for p in P:
+                for k in K:
+                    mu_z[omega][p, k] += rho_z * (scenario_solutions[omega]['z'][p, k] - z_bar[p, k])
+
     else:
         # 在更新协调变量之前计算收敛值
         convergence_t = sum(
             (scenario_solutions[omega]['t_eta'][p] - t_eta_bar[p])**2 for omega in Omega for p in P
         )
         convergence_x = sum(
-            (scenario_solutions[omega]['x'][p, k] - x_bar[p, k])**2 for omega in Omega for p in P for k in K
+            (scenario_solutions[omega]['z'][p, k] - z_bar[p, k])**2 for omega in Omega for p in P for k in K
         )
 
         print(f"\nt的收敛值：{convergence_t}")
@@ -610,7 +644,7 @@ for n in range(max_iter):
             t_eta_bar[p] = sum(p_omega[omega] * scenario_solutions[omega]['t_eta'][p] for omega in Omega)
         for p in P:
             for k in K:
-                x_bar[p, k] = sum(p_omega[omega] * scenario_solutions[omega]['x'][p, k] for omega in Omega)
+                z_bar[p, k] = sum(p_omega[omega] * scenario_solutions[omega]['z'][p, k] for omega in Omega)
 
         # 更新拉格朗日乘子
         for omega in Omega:
@@ -618,7 +652,7 @@ for n in range(max_iter):
                 mu_t[omega][p] += rho_t * (scenario_solutions[omega]['t_eta'][p] - t_eta_bar[p])
             for p in P:
                 for k in K:
-                    mu_x[omega][p, k] += rho_x * (scenario_solutions[omega]['x'][p, k] - x_bar[p, k])
+                    mu_z[omega][p, k] += rho_z * (scenario_solutions[omega]['z'][p, k] - z_bar[p, k])
 
 
         # 继续下一次迭代
@@ -631,7 +665,7 @@ for p in P:
     print(f"  港口 {p}:")
     print(f"    ETA（预计到达时间）: {t_eta_bar[p]:.2f}")
     for k in K:
-        print(f"    时间窗口 {k}: 权重 = {x_bar[p, k]:.2f}")
+        print(f"    时间窗口 {k}: 权重 = {z_bar[p, k]:.2f}")
 
 # 输出每个情景的解
 for omega in Omega:
@@ -645,11 +679,8 @@ for omega in Omega:
         print(f"    加油量（低硫燃油）: {scenario_solutions[omega]['Q_M'][p]:.2f}")
         print(f"    加油量（高硫燃油）: {scenario_solutions[omega]['Q_H'][p]:.2f}")
         if p in P_:
-            if y[p] > 0.5:
-                print(f"    从港口 {p} 到港口 {p+1} 的 ECA 航速: {scenario_solutions[omega]['v_eca'][p]:.2f}")
-                print(f"    从港口 {p} 到港口 {p+1} 的非 ECA 航速: {scenario_solutions[omega]['v_neca'][p]:.2f}")
-            else:
-                print(f"    从港口 {p} 到港口 {p + 1} 的 ECA 航速: {scenario_solutions[omega]['v_eca'][p]:.2f}")
+            print(f"    从港口 {p} 到港口 {p+1} 的 ECA 航速: {scenario_solutions[omega]['v_eca'][p]:.2f}")
+            print(f"    从港口 {p} 到港口 {p+1} 的非 ECA 航速: {scenario_solutions[omega]['v_neca'][p]:.2f}")
             # 绕行策略和加油策略
             print(f"    绕行策略 (y): {scenario_solutions[omega]['y'][p]}")
         else:
@@ -667,11 +698,8 @@ for omega in Omega:
         print(f"    航行时间: {scenario_solutions[omega]['t_sail'][p]:.2f}")
         print(f"    停留时间: {scenario_solutions[omega]['t_stay'][p]:.2f}")
         if p in P_:
-            if y[p] > 0.5:
-                print(f"    从港口 {p} 到港口 {p + 1} 的 ECA 航速: {scenario_solutions[omega]['v_eca'][p]:.2f}")
-                print(f"    从港口 {p} 到港口 {p + 1} 的非 ECA 航速: {scenario_solutions[omega]['v_neca'][p]:.2f}")
-            else:
-                print(f"    从港口 {p} 到港口 {p + 1} 的 ECA 航速: {scenario_solutions[omega]['v_eca'][p]:.2f}")
+            print(f"    从港口 {p} 到港口 {p+1} 的 ECA 航速: {scenario_solutions[omega]['v_eca'][p]:.2f}")
+            print(f"    从港口 {p} 到港口 {p+1} 的非 ECA 航速: {scenario_solutions[omega]['v_neca'][p]:.2f}")
             print(f"    绕行决策 (y): {scenario_solutions[omega]['y'][p]}")
             # 绕行和加油策略输出
             detour_strategy = '绕行' if scenario_solutions[omega]['y'][p] > 0.5 else '直接航线'

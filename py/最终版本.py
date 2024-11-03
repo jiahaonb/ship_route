@@ -12,7 +12,7 @@ import sys
 csv_pm_path = "data_columns_PM.csv"
 csv_ph_path = "data_columns_PH.csv"
 # 数据输出地址
-file = open("修改PHA.txt", "w", encoding="utf-8")
+file = open("1103周期七天 rho=50.txt", "w", encoding="utf-8")
 
 # 保存原始的sys.stdout
 original_stdout = sys.stdout
@@ -151,28 +151,19 @@ M_big = 1e7
 p_omega = {omega: 1 / len(Omega) for omega in Omega}  # 假设等概率
 
 # PHA 参数
-rho_t = 20.0  # 对 t_eta 的罚参数
-rho_z = 100.0  # 对 x 的罚参数
+rho_t = 2.0  # 对 t_eta 的罚参数
+rho_z = 50.0  # 对 x 的罚参数
 max_iter = 200  # 最大迭代次数
-epsilon_t = 1e-3  # 收敛阈值
+epsilon_t = 1e-5  # 收敛阈值
 epsilon_x = 1e-3  # 收敛阈值
 
 # 初始化协调变量和拉格朗日乘子
 t_eta_bar = {p: 0.0 for p in P}
 z_bar = {(p, k): 1.0 / len(K) for p in P for k in K}  # 均匀分配初值
 
-
 # 初始化拉格朗日乘子
 mu_t = {omega: {p: 0.0 for p in P} for omega in Omega}
 mu_z = {omega: {(p, k): 0.0 for p in P for k in K} for omega in Omega}
-
-# 新增拉格朗日乘子
-mu_Q_M = {omega: {p: 0.0 for p in P} for omega in Omega}
-mu_Q_H = {omega: {p: 0.0 for p in P} for omega in Omega}
-mu_v_eca = {omega: {p: 0.0 for p in P_} for omega in Omega}
-mu_v_neca = {omega: {p: 0.0 for p in P_} for omega in Omega}
-mu_y = {omega: {p: 0.0 for p in P_} for omega in Omega}
-mu_x_b = {omega: {p: 0.0 for p in P} for omega in Omega}
 
 # 初始化情景变量的存储
 scenario_solutions = {}
@@ -194,7 +185,7 @@ for n in range(max_iter):
         model.Params.OutputFlag = 1
         model.Params.NonConvex = 2  # 允许非凸二次约束
         model.Params.MIPGap = 0.1
-        model.Params.Threads = 6
+        model.Params.Threads = 28
 
         # 一阶段变量（针对每个情景）
         t_eta = model.addVars(P, vtype=GRB.CONTINUOUS, lb=0, name="t_eta")
@@ -204,7 +195,7 @@ for n in range(max_iter):
         z = model.addVars(P, K, vtype=GRB.BINARY, name="z")
 
         # 新增：t_eta_mod 和 n_days
-        t_eta_mod = model.addVars(P, vtype=GRB.CONTINUOUS, lb=0, ub=372.6, name="t_eta_mod")
+        t_eta_mod = model.addVars(P, vtype=GRB.CONTINUOUS, lb=0, ub=168, name="t_eta_mod")
         n_days = model.addVars(P, vtype=GRB.INTEGER, lb=0, name="n_days")
 
         # 二阶段变量（针对每个情景）
@@ -216,10 +207,10 @@ for n in range(max_iter):
         t_stay = model.addVars(P, vtype=GRB.CONTINUOUS, lb=0, name="t_stay")
 
         # 新增变量
-        t_arr_mod = model.addVars(P, vtype=GRB.CONTINUOUS, lb=0, ub=372.6, name="t_arr_mod")
+        t_arr_mod = model.addVars(P, vtype=GRB.CONTINUOUS, lb=0, ub=168, name="t_arr_mod")
         n_days_arrival = model.addVars(P, vtype=GRB.INTEGER, lb=0, name="n_days_arrival")
         t_port_entry = model.addVars(P, vtype=GRB.CONTINUOUS, lb=0, name="t_port_entry")
-        t_port_entry_mod = model.addVars(P, vtype=GRB.CONTINUOUS, lb=0, ub=372.6, name="t_port_entry_mod")
+        t_port_entry_mod = model.addVars(P, vtype=GRB.CONTINUOUS, lb=0, ub=168, name="t_port_entry_mod")
         # 新的 n_days_port_entry[p,k]
         n_days_port_entry = model.addVars(P, K, vtype=GRB.INTEGER, lb=0, name="n_days_port_entry")
 
@@ -292,9 +283,9 @@ for n in range(max_iter):
         # 固定初始出发时间
         model.addConstr(t_eta[1] == initial_departure_time, name="InitialETA")
         # t_eta_mod 和 n_days 的关系
-        model.addConstrs((t_eta[p] == 372.6 * n_days[p] + t_eta_mod[p] for p in P), name="ETA_Modulo")
+        model.addConstrs((t_eta[p] == 168 * n_days[p] + t_eta_mod[p] for p in P), name="ETA_Modulo")
         model.addConstrs((t_eta_mod[p] >= 0 for p in P), name="ETA_Modulo_NonNegative")
-        model.addConstrs((t_eta_mod[p] <= 372.6 for p in P), name="ETA_Modulo_Max")
+        model.addConstrs((t_eta_mod[p] <= 168 for p in P), name="ETA_Modulo_Max")
 
         for p in P:
             # 时间窗口权重之和为 1
@@ -328,9 +319,9 @@ for n in range(max_iter):
                 model.addConstr(t_arr[p] == t_dep[p - 1] + t_sail[p - 1], name=f"ActualArrivalTime_{p}")
 
                 # t_arr_mod 和 n_days_arrival 的关系
-                model.addConstr(t_arr[p] == 372.6 * n_days_arrival[p] + t_arr_mod[p], name=f"ArrivalTimeModulo_{p}")
+                model.addConstr(t_arr[p] == 168 * n_days_arrival[p] + t_arr_mod[p], name=f"ArrivalTimeModulo_{p}")
                 model.addConstr(t_arr_mod[p] >= 0, name=f"ArrivalModNonNegative_{p}")
-                model.addConstr(t_arr_mod[p] <= 372.6, name=f"ArrivalModMax_{p}")
+                model.addConstr(t_arr_mod[p] <= 168, name=f"ArrivalModMax_{p}")
 
                 # 等待时间
                 model.addConstr(t_wait[p] >= 0, name=f"WaitingTimeNonNegative_{p}")
@@ -352,11 +343,11 @@ for n in range(max_iter):
                     # 进港时间必须在选择的时间窗口内
 
                     model.addConstr(
-                        t_port_entry[p] >= 372.6 * n_days_port_entry[p, k] + a[p, k] - M_big * (1 - z[p, k]),
+                        t_port_entry[p] >= 168 * n_days_port_entry[p, k] + a[p, k] - M_big * (1 - z[p, k]),
                         name=f"PortEntryStartWindow_{p}_{k}"
                     )
                     model.addConstr(
-                        t_port_entry[p] <= 372.6 * n_days_port_entry[p, k] + b[p, k] + M_big * (1 - z[p, k]),
+                        t_port_entry[p] <= 168 * n_days_port_entry[p, k] + b[p, k] + M_big * (1 - z[p, k]),
                         name=f"PortEntryEndWindow_{p}_{k}"
                     )
                     # 进港日期不早于到达日期
@@ -534,6 +525,7 @@ for n in range(max_iter):
                 't_stay': {p: t_stay[p].X for p in P},
                 'v_eca': {p: v_eca[p].X if p in P_ else None for p in P},
                 'v_neca': {p: v_neca[p].X if p in P_ else None for p in P},
+                'l_ne': {p: l_ne[p].X if p in P_ else None for p in P},
                 'y': {p: y[p].X if p in P_ else None for p in P},
                 'x_b': {p: x_b[p].X for p in P},
                 'Q_M': {p: Q_M[p].X for p in P},
@@ -544,13 +536,7 @@ for n in range(max_iter):
                 'q_H_dep': {p: q_H_dep[p].X for p in P},
                 'R_M': {p: R_M[p].X if p in P_ else 0.0 for p in P},
                 'R_H': {p: R_H[p].X if p in P_ else 0.0 for p in P},
-                # 新增拉格朗日乘子
-                'mu_Q_M': mu_Q_M[omega].copy(),
-                'mu_Q_H': mu_Q_H[omega].copy(),
-                'mu_v_eca': mu_v_eca[omega].copy(),
-                'mu_v_neca': mu_v_neca[omega].copy(),
-                'mu_y': mu_y[omega].copy(),
-                'mu_x_b': mu_x_b[omega].copy(),
+
             }
             scenario_objs.append(model.ObjVal)
 
