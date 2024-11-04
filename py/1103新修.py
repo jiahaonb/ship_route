@@ -12,7 +12,7 @@ import sys
 csv_pm_path = "data_columns_PM.csv"
 csv_ph_path = "data_columns_PH.csv"
 # 数据输出地址
-file = open("1103新修 rho=50.txt", "w", encoding="utf-8")
+file = open("1104更改.txt", "w", encoding="utf-8")
 
 # 保存原始的sys.stdout
 original_stdout = sys.stdout
@@ -57,9 +57,9 @@ a = {
     (1, 1): 0,   (1, 2): 10,  (1, 3): 18,  (1, 4): 26,
     (2, 1): 10,  (2, 2): 18,  (2, 3): 26,  (2, 4): 35,
     (3, 1): 52,  (3, 2): 62,  (3, 3): 72,  (3, 4): 84,
-    (4, 1): 72,  (4, 2): 84,  (4, 3): 94,  (4, 4): 106,
-    (5, 1): 94,  (5, 2): 106, (5, 3): 118, (5, 4): 128,
-    (6, 1): 110, (6, 2): 125, (6, 3): 140, (6, 4): 155
+    (4, 1): 92,  (4, 2): 100,  (4, 3): 108,  (4, 4): 117,
+    (5, 1):115 ,  (5, 2): 125, (5, 3): 135, (5, 4): 143,
+    (6, 1):125, (6, 2): 136, (6, 3): 146, (6, 4): 156
 }
 
 # 时间窗的结束时间
@@ -67,9 +67,9 @@ b = {
     (1, 1): 6,   (1, 2): 16,  (1, 3): 24,  (1, 4): 32,
     (2, 1): 16,  (2, 2): 24,  (2, 3): 32,  (2, 4): 41,
     (3, 1): 58,  (3, 2): 68,  (3, 3): 78,  (3, 4): 90,
-    (4, 1): 78,  (4, 2): 90,  (4, 3): 102, (4, 4): 114,
-    (5, 1): 102, (5, 2): 114, (5, 3): 125, (5, 4): 132,
-    (6, 1): 118, (6, 2): 134, (6, 3): 149, (6, 4): 165
+    (4, 1): 98,  (4, 2): 106,  (4, 3): 114, (4, 4): 125,
+    (5, 1): 121, (5, 2): 132, (5, 3): 141, (5, 4): 150,
+    (6, 1): 132, (6, 2): 142, (6, 3): 152, (6, 4): 165
 }
 
 h = {
@@ -294,6 +294,7 @@ for n in range(max_iter):
                 model.addConstr(x[p, k] <= 1, name=f"X_UpperBound_{p}_{k}")
             # z[p,k] 为二进制变量，已经在变量定义中指定
 
+
         # 二阶段约束
         for p in P:
             if p == 1:
@@ -336,12 +337,21 @@ for n in range(max_iter):
                     # 进港时间必须在选择的时间窗口内
 
                     model.addConstr(
-                        t_port_entry[p] >= 168 * n_days_port_entry[p, k] + a[p, k] - M_big * (1 - z[p, k]),
+                        t_port_entry[p] >= 168 * n_days_port_entry[p, k] + a[p, k]*z[p,k] - M_big * (1 - z[p, k]),
                         name=f"PortEntryStartWindow_{p}_{k}"
                     )
                     model.addConstr(
-                        t_port_entry[p] <= 168 * n_days_port_entry[p, k] + b[p, k] + M_big * (1 - z[p, k]),
+                        t_port_entry[p] <= 168 * n_days_port_entry[p, k] + b[p, k]*z[p,k] + M_big * (1 - z[p, k]),
                         name=f"PortEntryEndWindow_{p}_{k}"
+                    )
+                    # 预计到达时间必须在选择的时间窗口内
+                    model.addConstr(
+                        t_eta[p] >= 168 * n_days[p] + a[p, k] - M_big * (1 - z[p, k]),
+                        name=f"tETAStartWindow_{p}_{k}"
+                    )
+                    model.addConstr(
+                        t_eta[p] <= 168 * n_days[p] + b[p, k] + M_big * (1 - z[p, k]),
+                        name=f"tETAEndWindow_{p}_{k}"
                     )
                     # 进港日期不早于到达日期
                     model.addConstr(
